@@ -19,7 +19,10 @@ export default function Conferences() {
             <CardDescription>25 Jun</CardDescription>
           </CardHeader>
           <CardContent>
-            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftwistedvoxel.com%2Fwp-content%2Fuploads%2F2020%2F12%2Fcyberpunk-2077-review.jpg&f=1&nofb=1&ipt=9b3b6ce72f3e6b45f86f92c8fa7cc4e6e8fe647f5d60aa2ce9da6e6b4d341c31&ipo=images" />
+            <img
+              width={400}
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftwistedvoxel.com%2Fwp-content%2Fuploads%2F2020%2F12%2Fcyberpunk-2077-review.jpg&f=1&nofb=1&ipt=9b3b6ce72f3e6b45f86f92c8fa7cc4e6e8fe647f5d60aa2ce9da6e6b4d341c31&ipo=images"
+            />
           </CardContent>
           <CardFooter>
             <ul className="flex gap-4">
