@@ -9,18 +9,18 @@ export function getCurrentMonthAndYear(): { month: string; year: number } {
   const date = new Date()
   const year = date.getFullYear()
   const monthNames = [
-    "january",
-    "february",
-    "march",
-    "april",
-    "may",
-    "june",
-    "july",
-    "august",
-    "september",
-    "october",
-    "november",
-    "december",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
   ]
   const month = monthNames[date.getMonth()] // getMonth() returns 0-11
 

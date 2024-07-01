@@ -40,7 +40,7 @@ export default function Nav() {
             <Calendar className="mr-2 h-4 w-4" />
             Calendar
           </h1>
-          <Link href="/conferences/watch" className="flex items-center">
+          <Link href="/watch" className="flex items-center">
             <ArrowRight className="mr-2 h-4 w-4" />
             Siguiente Conferencia
           </Link>
