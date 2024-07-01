@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
+import { RotateCcw } from "lucide-react"
 
 export default function Nav() {
   const router = useRouter()
@@ -34,7 +35,6 @@ export default function Nav() {
   }, [month, year, router])
   return (
     <nav className="flex items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Button onClick={resetValues}>Reset</Button>
       <Select value={month} onValueChange={(value) => setMonth(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Month" />
@@ -70,6 +70,10 @@ export default function Nav() {
           </SelectGroup>
         </SelectContent>
       </Select>
+      <Button onClick={resetValues}>
+        <RotateCcw className="mr-2 h-4 w-4" />
+        Reset
+      </Button>
     </nav>
   )
 }
