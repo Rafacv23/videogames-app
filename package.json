@@ -9,13 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-menubar": "^1.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-select": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "i18next": "^23.11.5",
     "i18next-resources-to-backend": "^1.2.1",
+    "lucide-react": "^0.399.0",
     "next": "14.2.4",
     "next-i18n-router": "^5.5.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-i18next": "^14.1.2"
+    "react-i18next": "^14.1.2",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
