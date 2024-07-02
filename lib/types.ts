@@ -21,6 +21,7 @@ export interface Game {
   dlc?: string
   remaster?: string
   early_access?: string
+  platforms?: string
 }
 
 export type Games = Game[]
