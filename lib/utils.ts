@@ -32,3 +32,25 @@ export function convertYoutubeUrl(url: string) {
 
   return match && match[2].length === 11 ? match[2] : null
 }
+
+export function generateTimeAndDateLink(
+  dateString: string,
+  timeString?: string
+) {
+  if (!dateString) return ""
+
+  // Obtener año, mes y día de la fecha
+  const [year, month, day] = dateString.split("-")
+
+  // Obtener hora y minutos de la hora si está presente
+  let isoDate = `${year}${month}${day}`
+  if (timeString) {
+    const [hours, minutes] = timeString.split(":")
+    isoDate += `T${hours}${minutes}`
+  }
+
+  // Construir el enlace completo
+  const link = `https://www.timeanddate.com/worldclock/fixedtime.html?iso=${isoDate}`
+
+  return link
+}
