@@ -1,14 +1,10 @@
 import VideogameCard from "@/components/VideogameCard"
 import { Game } from "@/lib/types"
 
-export default async function Page({
-  params,
-}: {
-  params: { year: string; month: string }
-}) {
-  async function getData({ year, month }: { year: string; month: string }) {
+export default async function Page({ params }: { params: { year: string } }) {
+  async function getData({ year }: { year: string }) {
     // Usar los parámetros pasados para construir la URL de la API
-    const url = `http://localhost:3000/api/releases/${year}/${month}`
+    const url = `http://localhost:3000/api/conferences/${year}`
     const res = await fetch(url)
 
     if (!res.ok) {
@@ -25,7 +21,7 @@ export default async function Page({
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        Games released in {params.year} {params.month}
+        Conferences in {params.year}
         {data.games.map((game: Game) => (
           <VideogameCard key={game.id} game={game} />
         ))}
