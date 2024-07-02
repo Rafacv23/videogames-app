@@ -16,7 +16,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Conference } from "@/lib/types"
-import { convertYoutubeUrl } from "@/lib/utils"
+import { convertYoutubeUrl, generateTimeAndDateLink } from "@/lib/utils"
 import { ExternalLink, StepBack } from "lucide-react"
 import Link from "next/link"
 import React from "react"
@@ -90,7 +90,19 @@ export default async function Watch({ params }: { params: { year: string } }) {
             {conferences.map((conference: Conference) => (
               <TableRow key={conference.id}>
                 <TableCell className="font-medium">{conference.name}</TableCell>
-                <TableCell>{conference.release_date}</TableCell>
+                <TableCell>
+                  <Link
+                    target="blank"
+                    href={generateTimeAndDateLink(
+                      conference.release_date,
+                      conference.time
+                    )}
+                  >
+                    {`${conference.release_date} ${
+                      conference.time ? `| ${conference.time} UTC` : "| TBA"
+                    }`}
+                  </Link>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
