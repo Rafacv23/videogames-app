@@ -20,11 +20,15 @@ export default async function Page({ params }: { params: { year: string } }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        Conferences in {params.year}
-        {data.games.map((game: Game) => (
-          <VideogameCard key={game.id} game={game} />
-        ))}
+      <div className="max-w-5xl w-full mx-auto">
+        <h1 className="text-xl font-bold mb-4">Conferences in {params.year}</h1>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {data.games.map((game: Game) => (
+            <li key={game.id}>
+              <VideogameCard game={game} />
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   )
