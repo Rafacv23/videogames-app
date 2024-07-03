@@ -56,7 +56,7 @@ export default function Nav() {
       setNextConference(upcomingConference)
     }
     fetchNextConference()
-  })
+  }, [year])
 
   return (
     <nav className="flex flex-col items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
