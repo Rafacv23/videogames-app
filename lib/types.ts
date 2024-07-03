@@ -4,6 +4,7 @@ export interface Conference {
   url?: string
   release_date: string
   time?: string
+  year?: string
 }
 
 export type Conferences = Conference[]
