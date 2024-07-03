@@ -22,6 +22,9 @@ export interface Game {
   remaster?: string
   early_access?: string
   platforms?: string
+  conference_name?: string
+  conference_date?: string
+  conference_url?: string
 }
 
 export type Games = Game[]
