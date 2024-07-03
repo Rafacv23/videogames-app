@@ -28,3 +28,9 @@ export interface Game {
 }
 
 export type Games = Game[]
+
+export interface ConferenceListProps {
+  data: Game[]
+  year: string
+  searchTerm: string
+}
