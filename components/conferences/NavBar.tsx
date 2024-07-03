@@ -18,6 +18,7 @@ const NavBar: React.FC<NavBarProps> = ({
   position,
   setPosition,
   year,
+  platforms,
 }) => {
   return (
     <nav className="flex flex-col items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,7 +30,7 @@ const NavBar: React.FC<NavBarProps> = ({
         <CardContent className="flex gap-2">
           <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
           <SortMenu position={position} setPosition={setPosition} />
-          <FilterMenu conferences={conferences} />
+          <FilterMenu conferences={conferences} platforms={platforms} />
           <Button>
             <RotateCcw className="mr-2 h-4 w-4" />
             Reset
