@@ -1,6 +1,6 @@
 // components/ConferencesDropdown.tsx
 import React from "react"
-import { Conference } from "@/lib/types"
+import { Conference, ConferencesDropdownProps } from "@/lib/types"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,10 +10,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { Calendar } from "lucide-react"
-
-interface ConferencesDropdownProps {
-  conferences: Conference[]
-}
 
 const ConferencesDropdown: React.FC<ConferencesDropdownProps> = ({
   conferences,

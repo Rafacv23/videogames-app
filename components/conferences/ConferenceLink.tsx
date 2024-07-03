@@ -1,14 +1,9 @@
 // components/ConferenceLink.tsx
 import React from "react"
-import { Conference } from "@/lib/types"
+import { ConferenceLinkProps } from "@/lib/types"
 import { CardDescription } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-
-interface ConferenceLinkProps {
-  nextConference: Conference | null
-  year: string
-}
 
 const ConferenceLink: React.FC<ConferenceLinkProps> = ({
   nextConference,

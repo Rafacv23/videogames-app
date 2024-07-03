@@ -35,3 +35,36 @@ export interface ConferenceListProps {
   year: string
   searchTerm: string
 }
+
+export interface NavBarProps {
+  conferences: Conference[]
+  nextConference: Conference | null
+  searchTerm: string
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  position: string
+  setPosition: (value: string) => void
+  year: string
+}
+
+export interface FilterMenuProps {
+  conferences: Conferences
+}
+
+export interface ConferencesDropdownProps {
+  conferences: Conference[]
+}
+
+export interface ConferenceLinkProps {
+  nextConference: Conference | null
+  year: string
+}
+
+export interface SearchBarProps {
+  searchTerm: string
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export interface SortMenuProps {
+  position: string
+  setPosition: (value: string) => void
+}

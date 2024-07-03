@@ -9,11 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { ArrowDownUp } from "lucide-react"
-
-interface SortMenuProps {
-  position: string
-  setPosition: (value: string) => void
-}
+import { SortMenuProps } from "@/lib/types"
 
 const SortMenu: React.FC<SortMenuProps> = ({ position, setPosition }) => {
   return (

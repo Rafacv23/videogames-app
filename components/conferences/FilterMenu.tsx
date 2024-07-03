@@ -14,11 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { Filter, UserPlus, MessageSquare } from "lucide-react"
-import { Conference } from "@/lib/types"
-
-interface FilterMenuProps {
-  conferences: Conference[]
-}
+import { FilterMenuProps } from "@/lib/types"
 
 const FilterMenu: React.FC<FilterMenuProps> = ({ conferences }) => {
   return (

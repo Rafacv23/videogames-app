@@ -1,11 +1,7 @@
 // components/SearchBar.tsx
 import React from "react"
 import { Input } from "@/components/ui/input"
-
-interface SearchBarProps {
-  searchTerm: string
-  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+import { SearchBarProps } from "@/lib/types"
 
 const SearchBar: React.FC<SearchBarProps> = ({
   searchTerm,

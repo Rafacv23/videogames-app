@@ -1,6 +1,6 @@
 // components/NavBar.tsx
 import React from "react"
-import { Conference } from "@/lib/types"
+import { NavBarProps } from "@/lib/types"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { RotateCcw } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -9,16 +9,6 @@ import ConferenceLink from "./ConferenceLink"
 import SearchBar from "./SearchBar"
 import SortMenu from "./SortMenu"
 import FilterMenu from "./FilterMenu"
-
-interface NavBarProps {
-  conferences: Conference[]
-  nextConference: Conference | null
-  searchTerm: string
-  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  position: string
-  setPosition: (value: string) => void
-  year: string
-}
 
 const NavBar: React.FC<NavBarProps> = ({
   conferences,
