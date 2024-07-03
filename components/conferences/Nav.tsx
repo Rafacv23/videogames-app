@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect } from "react"
 import { Input } from "../ui/input"
 import {
   DropdownMenu,
@@ -15,6 +15,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
 import {
@@ -26,26 +28,75 @@ import {
   Calendar,
   ArrowRight,
 } from "lucide-react"
-import { Card } from "../ui/card"
+import { Card, CardContent, CardDescription, CardHeader } from "../ui/card"
 import Link from "next/link"
+import { getCurrentMonthAndYear } from "@/lib/utils"
+import { Conference } from "@/lib/types"
 
 export default function Nav() {
   const [position, setPosition] = React.useState("newest") // Default sorting option
+  const [conferences, setConferences] = React.useState([])
+  const [nextConference, setNextConference] = React.useState<Conference | null>(
+    null
+  )
+  const year = getCurrentMonthAndYear().year
+
+  useEffect(() => {
+    const fetchNextConference = async () => {
+      const url = `http://localhost:3000/api/watch/${year}`
+      const res = await fetch(url)
+      if (!res.ok) {
+        throw new Error("Failed to fetch data")
+      }
+      const data = await res.json()
+
+      setConferences(data.conferences)
+      const upcomingConference = data.conferences[data.conferences.length - 1]
+
+      setNextConference(upcomingConference)
+    }
+    fetchNextConference()
+  })
 
   return (
     <nav className="flex flex-col items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Card>
-        <div className="flex gap-4 mb-4 justify-center">
-          <h1 className="flex items-center">
-            <Calendar className="mr-2 h-4 w-4" />
-            Calendar
-          </h1>
-          <Link href="/watch" className="flex items-center">
-            <ArrowRight className="mr-2 h-4 w-4" />
-            Siguiente Conferencia
+        <CardHeader className="flex flex-row justify-around items-end">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center">
+              <Calendar className="mr-2 h-4 w-4" />
+              Calendar
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Conferences</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {conferences
+                ? conferences.map((conference: Conference) => (
+                    <DropdownMenuItem key={conference.id}>
+                      {conference.name}
+                    </DropdownMenuItem>
+                  ))
+                : null}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Link
+            href={
+              nextConference?.url
+                ? `/watch/${year}/${nextConference?.id}`
+                : `/watch/${year}`
+            }
+            className="flex items-center"
+          >
+            <div>
+              <span>COMING UP NEXT</span>
+              <CardDescription>{nextConference?.name}</CardDescription>
+            </div>
+            <div>
+              <ArrowRight className="mr-2 h-4 w-4" />
+            </div>
           </Link>
-        </div>
-        <div className="flex gap-2">
+        </CardHeader>
+        <CardContent className="flex gap-2">
           <Input type="text" placeholder="Search game title..." />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -150,7 +201,7 @@ export default function Nav() {
             <RotateCcw className="mr-2 h-4 w-4" />
             Reset
           </Button>
-        </div>
+        </CardContent>
       </Card>
     </nav>
   )
