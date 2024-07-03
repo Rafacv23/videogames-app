@@ -53,12 +53,12 @@ export default async function Watch({ params }: { params: { year: string } }) {
   const { conferences, lastConference, upcomingConference, pastConferences } =
     await getData(params)
 
+  const currentDate = new Date()
   const url = convertYoutubeUrl(lastConference.url)
 
   return (
     <main className="min-h-screen flex-col items-center justify-center p-24 flex lg:grid lg:grid-cols-2 lg:gap-4">
       <div className="grid w-full max-w-xl lg:max-w-2xl">
-        {/* Renderizar la última conferencia */}
         <Card>
           <iframe
             height="315"
@@ -88,7 +88,14 @@ export default async function Watch({ params }: { params: { year: string } }) {
           </TableHeader>
           <TableBody>
             {conferences.map((conference: Conference) => (
-              <TableRow key={conference.id}>
+              <TableRow
+                key={conference.id}
+                className={
+                  new Date(conference.release_date) > currentDate
+                    ? ""
+                    : "line-through"
+                }
+              >
                 <TableCell className="font-medium">{conference.name}</TableCell>
                 <TableCell>
                   <Link
@@ -109,7 +116,6 @@ export default async function Watch({ params }: { params: { year: string } }) {
         </Table>
       </div>
       <aside className="grid w-full max-w-xl lg:max-w-xs">
-        {/* Renderizar la próxima conferencia */}
         <Card className="mb-8">
           <CardHeader>
             <CardDescription className="text-red-500 font-bold">
@@ -130,11 +136,7 @@ export default async function Watch({ params }: { params: { year: string } }) {
             <ul>
               {pastConferences.map((conference: Conference) => (
                 <li key={conference.id}>
-                  <Link
-                    href={`https://www.youtube.com/embed/${convertYoutubeUrl(
-                      conference.url
-                    )}`}
-                  >
+                  <Link href={`/watch/${params.year}/${conference.id}`}>
                     {conference.name}
                   </Link>
                 </li>
