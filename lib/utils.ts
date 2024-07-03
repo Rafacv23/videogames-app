@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Conference, Game } from "./types"
+import { Conference, Game, Platform } from "./types"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -98,6 +98,24 @@ export const fetchGames = async ({
     setData(data.games)
   } catch (error) {
     console.error("Error fetching games:", error)
+  }
+}
+
+export const fetchPlatforms = async ({
+  setPlatforms,
+}: {
+  setPlatforms: React.Dispatch<React.SetStateAction<Platform[]>>
+}) => {
+  const url = `http://localhost:3000/api/platforms`
+  try {
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error("Failed to fetch platforms")
+    }
+    const data = await res.json()
+    setPlatforms(data.platforms)
+  } catch (error) {
+    console.error("Error fetching platforms:", error)
   }
 }
 
