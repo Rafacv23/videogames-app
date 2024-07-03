@@ -44,10 +44,12 @@ export interface NavBarProps {
   position: string
   setPosition: (value: string) => void
   year: string
+  platforms: Platform[]
 }
 
 export interface FilterMenuProps {
-  conferences: Conferences
+  conferences: { id: string; name: string }[]
+  platforms: Platform[]
 }
 
 export interface ConferencesDropdownProps {
@@ -67,4 +69,13 @@ export interface SearchBarProps {
 export interface SortMenuProps {
   position: string
   setPosition: (value: string) => void
+}
+
+export interface Platform {
+  id: string
+  name: string
+  img?: string
+  url?: string
+  release_date?: string
+  manufacturer?: string
 }
