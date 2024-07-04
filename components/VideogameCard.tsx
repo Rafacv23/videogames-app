@@ -10,6 +10,7 @@ import {
 import { Badge } from "./ui/badge"
 import { Game } from "@/lib/types"
 import Link from "next/link"
+import { Button } from "./ui/button"
 
 export default function VideogameCard({ game }: { game: Game }) {
   // Separar las plataformas por comas y limpiar espacios
@@ -36,7 +37,7 @@ export default function VideogameCard({ game }: { game: Game }) {
         <img
           src={game.img}
           alt={`${game.name} logo`}
-          className="max-w-full h-auto"
+          className="max-w-full h-auto max-h-32"
           loading="lazy"
         />
       </CardContent>
@@ -44,10 +45,15 @@ export default function VideogameCard({ game }: { game: Game }) {
         <ul className="mt-2 flex flex-wrap">
           {platforms?.map((platform, index) => (
             <li key={index} className="mr-1.5 mt-2">
-              <Badge>{platform}</Badge>
+              <Badge variant="outline">{platform}</Badge>
             </li>
           ))}
         </ul>
+      </CardFooter>
+      <CardFooter>
+        <Link href={`/game/${game.id}`}>
+          <Button>Learn More</Button>
+        </Link>
       </CardFooter>
     </Card>
   )
