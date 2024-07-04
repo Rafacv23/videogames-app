@@ -13,28 +13,41 @@ import {
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { RotateCcw } from "lucide-react"
+import { fetchPlatforms } from "@/lib/fetchs"
+import { Platform } from "@/lib/types"
 
 export default function Nav() {
   const router = useRouter()
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
+  const [selectedPlatform, setSelectedPlatform] = useState("")
+  const [platforms, setPlatforms] = useState<Platform[]>([])
 
   const resetValues = () => {
     setMonth("")
     setYear("")
+    setSelectedPlatform("")
     router.push(`/releases`)
   }
 
   useEffect(() => {
-    if (year) {
+    fetchPlatforms({ setPlatforms })
+  }, [])
+
+  useEffect(() => {
+    if (selectedPlatform && year && month) {
+      router.push(`/releases/${year}/${month}/${selectedPlatform}`)
+    } else if (selectedPlatform && year) {
+      router.push(`/releases/${year}/1/${selectedPlatform}`)
+    } else if (year && month) {
+      router.push(`/releases/${year}/${month}`)
+    } else if (year) {
       router.push(`/releases/${year}/1`)
     }
-    if (month && year) {
-      router.push(`/releases/${year}/${month}`)
-    }
-  }, [month, year, router])
+  }, [month, year, selectedPlatform, router])
+
   return (
-    <nav className="flex items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="flex items-center justify-center md:space-x-4 sticky top-16 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Select value={month} onValueChange={(value) => setMonth(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Month" />
@@ -67,6 +80,26 @@ export default function Nav() {
             <SelectItem value="2024">2024</SelectItem>
             <SelectItem value="2025">2025</SelectItem>
             <SelectItem value="2026">2026</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Select
+        value={selectedPlatform}
+        onValueChange={(value) => setSelectedPlatform(value)}
+      >
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Platform" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Platforms</SelectLabel>
+            {platforms
+              ? platforms.map((platform) => (
+                  <SelectItem key={platform.id} value={platform.id}>
+                    {platform.name}
+                  </SelectItem>
+                ))
+              : null}
           </SelectGroup>
         </SelectContent>
       </Select>
