@@ -17,6 +17,7 @@ export async function GET(request: Request, context: any) {
     LEFT JOIN Platforms ON Games_Platforms.platform_id = Platforms.id
     WHERE Games.release_date LIKE '${year}-${month}%'
     GROUP BY Games.id
+    ORDER BY Games.release_date
   `
 
     const data = await turso.execute(sql)
