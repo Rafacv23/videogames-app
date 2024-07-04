@@ -3,13 +3,9 @@
 import React, { useEffect, useState } from "react"
 import { Conference, Game, Platform } from "@/lib/types"
 import Data from "@/components/conferences/Data"
-import {
-  fetchConferences,
-  fetchGames,
-  fetchPlatforms,
-  sortGamesByReleaseDate,
-} from "@/lib/utils"
+import { sortGamesByReleaseDate } from "@/lib/utils"
 import NavBar from "@/components/conferences/NavBar"
+import { fetchConferences, fetchGames, fetchPlatforms } from "@/lib/fetchs"
 
 export default function Page({ params }: { params: { year: string } }) {
   const [position, setPosition] = useState("newest") // Default sorting option

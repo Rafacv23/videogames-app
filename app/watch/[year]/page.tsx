@@ -1,6 +1,6 @@
 import Player from "@/components/watch/Player"
 import Rewatch from "@/components/watch/Rewatch"
-import { fetchWatch } from "@/lib/utils"
+import { fetchWatch } from "@/lib/fetchs"
 import React from "react"
 
 export default async function Watch({ params }: { params: { year: string } }) {

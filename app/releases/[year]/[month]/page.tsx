@@ -1,6 +1,6 @@
 import VideogameCard from "@/components/VideogameCard"
+import { fetchReleasesMonthYear } from "@/lib/fetchs"
 import { Game } from "@/lib/types"
-import { fetchReleasesMonthYear } from "@/lib/utils"
 
 export default async function Page({
   params,
