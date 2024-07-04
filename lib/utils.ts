@@ -173,6 +173,31 @@ export const fetchWatch = async ({
   }
 }
 
+export const fetchReleasesMonthYear = async ({
+  year,
+  month,
+}: {
+  year: number | string
+  month: number | string
+}) => {
+  const url = `http://localhost:3000/api/releases/${year}/${month}`
+
+  try {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch releases")
+    }
+
+    const data = await res.json()
+
+    return data
+  } catch (error) {
+    console.error("Error fetching releases:", error)
+    throw error
+  }
+}
+
 // Function to sort games based on release date
 export const sortGamesByReleaseDate = (games: Game[], order: string) => {
   const sortedGames = [...games]
