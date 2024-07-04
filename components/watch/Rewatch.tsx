@@ -50,7 +50,7 @@ export default function Rewatch({
             {pastConferences.map((conference: Conference) => (
               <li key={conference.id}>
                 <Link href={`/watch/${year}/${conference.id}`}>
-                  <Button variant="secondary">{conference.name}</Button>
+                  <Button>{conference.name}</Button>
                 </Link>
               </li>
             ))}
