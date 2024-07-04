@@ -1,9 +1,10 @@
 // components/ConferenceLink.tsx
 import React from "react"
 import { ConferenceLinkProps } from "@/lib/types"
-import { CardDescription } from "@/components/ui/card"
+import { CardDescription, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import MyTimer from "../Countdown"
 
 const ConferenceLink: React.FC<ConferenceLinkProps> = ({
   nextConference,
@@ -19,7 +20,12 @@ const ConferenceLink: React.FC<ConferenceLinkProps> = ({
       className="flex items-center"
     >
       <div>
-        <span>COMING UP NEXT</span>
+        <CardDescription className="text-red-500 font-bold flex gap-2">
+          COMING UP NEXT
+          {nextConference?.release_date ? (
+            <MyTimer expiryTimestamp={new Date(nextConference.release_date)} />
+          ) : null}
+        </CardDescription>
         <CardDescription>{nextConference?.name}</CardDescription>
       </div>
       <div>
