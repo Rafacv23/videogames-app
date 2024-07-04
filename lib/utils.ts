@@ -119,6 +119,60 @@ export const fetchPlatforms = async ({
   }
 }
 
+export const fetchWatch = async ({
+  year,
+  conferenceId,
+}: {
+  year: string
+  conferenceId?: string
+}) => {
+  const url = `http://localhost:3000/api/watch/${year}`
+
+  try {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data")
+    }
+
+    const data = await res.json()
+
+    const currentDate = new Date()
+    const upcomingConference = data.conferences[data.conferences.length - 1]
+
+    const pastConferences = data.conferences.filter(
+      (conference: Conference) =>
+        new Date(conference.release_date) < currentDate
+    )
+
+    const lastConference = pastConferences[pastConferences.length - 1]
+
+    if (conferenceId) {
+      const selectedConference = data.conferences.find(
+        (conference: Conference) => conference.id === conferenceId
+      )
+
+      return {
+        conferences: data.conferences,
+        upcomingConference,
+        pastConferences,
+        selectedConference,
+        lastConference,
+      }
+    } else {
+      return {
+        conferences: data.conferences,
+        upcomingConference,
+        pastConferences,
+        lastConference,
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error)
+    throw error
+  }
+}
+
 // Function to sort games based on release date
 export const sortGamesByReleaseDate = (games: Game[], order: string) => {
   const sortedGames = [...games]
