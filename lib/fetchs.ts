@@ -141,3 +141,49 @@ export const fetchReleasesMonthYear = async ({
     throw error
   }
 }
+
+export const fetchReleasesMonthYearPlatform = async ({
+  year,
+  month,
+  platformId,
+}: {
+  year: number | string
+  month: number | string
+  platformId: string
+}) => {
+  const url = `http://localhost:3000/api/releases/${year}/${month}/${platformId}`
+
+  try {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch releases")
+    }
+
+    const data = await res.json()
+
+    return data
+  } catch (error) {
+    console.error("Error fetching releases:", error)
+    throw error
+  }
+}
+
+export const fetchGame = async ({ gameId }: { gameId: string }) => {
+  const url = `http://localhost:3000/api/game/${gameId}`
+
+  try {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch game")
+    }
+
+    const data = await res.json()
+
+    return data.games[0]
+  } catch (error) {
+    console.error("Error fetching game:", error)
+    throw error
+  }
+}
