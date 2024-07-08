@@ -9,6 +9,7 @@ import {
 } from "./ui/dropdown-menu"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Search from "./Search"
 
 export default function Header() {
   return (
@@ -19,7 +20,7 @@ export default function Header() {
             <Link className="block text-teal-600 dark:text-teal-300" href="/">
               <span className="sr-only">Home</span>
               <Avatar>
-                <AvatarImage src="logo.avif" />
+                <AvatarImage src="/logo.avif" />
                 <AvatarFallback>Home</AvatarFallback>
               </Avatar>
             </Link>
@@ -28,6 +29,7 @@ export default function Header() {
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
+                <Search className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75" />
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
@@ -85,6 +87,7 @@ export default function Header() {
                   </svg>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
+                  <Search className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" />
                   <Link href="/releases">
                     <DropdownMenuItem>Releases</DropdownMenuItem>
                   </Link>
