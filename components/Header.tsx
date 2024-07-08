@@ -25,7 +25,6 @@ export default function Header() {
               </Avatar>
             </Link>
           </div>
-
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">

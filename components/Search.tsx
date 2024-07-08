@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "./ui/dialog"
-import { Button } from "./ui/button"
 const Search = ({ className }: { className?: string }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [results, setResults] = useState([])
