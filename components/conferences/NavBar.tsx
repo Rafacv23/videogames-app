@@ -23,13 +23,16 @@ const NavBar: React.FC<NavBarProps> = ({
   resetValues,
 }) => {
   return (
-    <nav className="flex flex-col items-center justify-center space-x-4 sticky top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav
+      id="start"
+      className="flex flex-col items-center justify-center space-x-4 top-20 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
       <Card>
-        <CardHeader className="flex flex-row justify-around items-end">
+        <CardHeader className="md:flex md:flex-row justify-around md:items-end">
           <ConferencesDropdown conferences={conferences} />
           <ConferenceLink nextConference={nextConference} year={year} />
         </CardHeader>
-        <CardContent className="flex gap-2">
+        <CardContent className="flex flex-col md:flex-row gap-2">
           <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
           <SortMenu position={position} setPosition={setPosition} />
           <FilterMenu

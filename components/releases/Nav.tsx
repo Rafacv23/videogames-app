@@ -47,7 +47,10 @@ export default function Nav() {
   }, [month, year, selectedPlatform, router])
 
   return (
-    <nav className="flex items-center justify-center md:space-x-4 sticky top-16 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav
+      id="start"
+      className="flex flex-col md:flex-row items-center justify-center md:space-x-4 top-16 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
       <Select value={month} onValueChange={(value) => setMonth(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Month" />
@@ -103,7 +106,7 @@ export default function Nav() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Button onClick={resetValues}>
+      <Button onClick={resetValues} className="w-[180px]">
         <RotateCcw className="mr-2 h-4 w-4" />
         Reset
       </Button>
