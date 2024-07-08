@@ -5,7 +5,13 @@ import { Conference, Game, Platform } from "@/lib/types"
 import Data from "@/components/conferences/Data"
 import { sortGamesByReleaseDate } from "@/lib/utils"
 import NavBar from "@/components/conferences/NavBar"
-import { fetchConferences, fetchGames, fetchPlatforms } from "@/lib/fetchs"
+import {
+  fetchConferences,
+  fetchConferencesYears,
+  fetchGames,
+  fetchPlatforms,
+} from "@/lib/fetchs"
+import { useRouter } from "next/navigation"
 
 export default function Page({ params }: { params: { year: string } }) {
   const [position, setPosition] = useState("newest") // Default sorting option
@@ -14,15 +20,24 @@ export default function Page({ params }: { params: { year: string } }) {
   const [data, setData] = useState<Game[]>([]) // State to hold games data
   const [searchTerm, setSearchTerm] = useState("") // State for search term
   const [platforms, setPlatforms] = useState<Platform[]>([])
+  const [years, setYears] = useState([])
+  const router = useRouter()
 
   useEffect(() => {
     fetchConferences({ year: params.year, setConferences, setNextConference })
     fetchGames({ year: params.year, setData })
     fetchPlatforms({ setPlatforms })
+    fetchConferencesYears({ setYears })
   }, [params.year])
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
+  }
+
+  const resetValues = () => {
+    setPosition("newest")
+    setSearchTerm("")
+    router.push(`/conferences`)
   }
 
   // Apply sorting based on current position state
@@ -39,6 +54,8 @@ export default function Page({ params }: { params: { year: string } }) {
         setPosition={setPosition}
         year={params.year}
         platforms={platforms}
+        conferenceYears={years}
+        resetValues={resetValues}
       />
       <Data data={sortedGames} year={params.year} searchTerm={searchTerm} />
     </>
