@@ -45,11 +45,15 @@ export interface NavBarProps {
   setPosition: (value: string) => void
   year: string
   platforms: Platform[]
+  conferenceYears: string[]
+  resetValues: () => void
 }
 
 export interface FilterMenuProps {
+  year?: string | number | null
   conferences: { id: string; name: string }[]
   platforms: Platform[]
+  conferenceYears: string[]
 }
 
 export interface ConferencesDropdownProps {

@@ -45,6 +45,52 @@ export const fetchGames = async ({
   }
 }
 
+export const fetchGamesByConference = async ({
+  year,
+  conferenceId,
+  setData,
+}: {
+  year: string
+  conferenceId: string
+  setData: React.Dispatch<React.SetStateAction<Game[]>>
+}) => {
+  const url = `http://localhost:3000/api/conferences/${year}/${conferenceId}`
+  try {
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error("Failed to fetch games")
+    }
+    const data = await res.json()
+    setData(data.games)
+  } catch (error) {
+    console.error("Error fetching games:", error)
+  }
+}
+
+export const fetchGamesByConferenceAndPlatform = async ({
+  year,
+  conferenceId,
+  platformId,
+  setData,
+}: {
+  year: string
+  conferenceId: string
+  platformId: string
+  setData: React.Dispatch<React.SetStateAction<Game[]>>
+}) => {
+  const url = `http://localhost:3000/api/conferences/${year}/${conferenceId}/${platformId}`
+  try {
+    const res = await fetch(url)
+    if (!res.ok) {
+      throw new Error("Failed to fetch games")
+    }
+    const data = await res.json()
+    setData(data.games)
+  } catch (error) {
+    console.error("Error fetching games:", error)
+  }
+}
+
 export const fetchPlatforms = async ({
   setPlatforms,
 }: {
@@ -184,6 +230,28 @@ export const fetchGame = async ({ gameId }: { gameId: string }) => {
     return data.games[0]
   } catch (error) {
     console.error("Error fetching game:", error)
+    throw error
+  }
+}
+
+export const fetchConferencesYears = async ({
+  setYears,
+}: {
+  setYears: React.Dispatch<React.SetStateAction<never[]>>
+}) => {
+  const url = `http://localhost:3000/api/conferences/years`
+
+  try {
+    const res = await fetch(url)
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch years")
+    }
+
+    const data = await res.json()
+    setYears(data.years)
+  } catch (error) {
+    console.error("Error fetching years:", error)
     throw error
   }
 }
