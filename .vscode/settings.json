@@ -1,0 +1,8 @@
+{
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**": "${filename}.${extname} - Pages 📄",
+    "**/components/**": "${filename}.${extname} - Components 🧩",
+    "**/app/api/**": "${filename}.${extname} - Api 📦",
+    "**/lib/**": "${filename}.${extname} - Lib 🔗"
+  }
+}
