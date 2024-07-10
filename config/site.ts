@@ -1,7 +1,8 @@
 export const siteConfig = {
-  name: "VideogameApp",
+  name: "All in one for gamers",
   url: "https://example.com",
-  description: "This is a example",
+  description:
+    "Free and open source videogame all in one application. Created for players to bring the best experience for gamers.",
   author: "Rafa Canosa",
   links: {
     github: "https://github.com/rafacv23",
