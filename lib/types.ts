@@ -34,7 +34,7 @@ export interface ConferenceListProps {
   data: Game[]
   year: string
   searchTerm: string
-  totalPages: number
+  totalPages?: number
 }
 
 export interface NavBarProps {
