@@ -6,6 +6,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/rafacv23",
     personalSite: "https://www.rafacanosa.dev",
+    mail: "mailto:rafacv23@gmail.com",
   },
 }
 
