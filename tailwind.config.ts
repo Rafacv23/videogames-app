@@ -10,6 +10,9 @@ const config = {
   ],
   prefix: "",
   theme: {
+    colors: {
+      pistacho: "#77FF52",
+    },
     container: {
       center: true,
       padding: "2rem",
