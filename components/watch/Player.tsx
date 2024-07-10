@@ -31,7 +31,7 @@ export default function Player({
 
   return (
     <div className="w-full lg:max-w-2xl mb-8 lg:mb-0 lg:mr-4">
-      <Card className="shadow-md">
+      <Card className="border-none">
         <iframe
           height="315"
           src={`https://www.youtube.com/embed/${url}`}
@@ -56,7 +56,7 @@ export default function Player({
           <TableCaption>All Conferences</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[150px]">Conference</TableHead>
+              <TableHead>Conference</TableHead>
               <TableHead>Date</TableHead>
             </TableRow>
           </TableHeader>
