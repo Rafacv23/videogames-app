@@ -23,7 +23,7 @@ export default function Player({
   conferences,
 }: {
   lastConference: Conference
-  conferences: Conference[]
+  conferences?: Conference[]
 }) {
   const currentDate = new Date()
 
@@ -51,42 +51,44 @@ export default function Player({
           </CardDescription>
         </CardHeader>
       </Card>
-      <Table className="mt-8 mb-8 w-full">
-        <TableCaption>All Conferences</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[150px]">Conference</TableHead>
-            <TableHead>Date</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {conferences.map((conference: Conference) => (
-            <TableRow
-              key={conference.id}
-              className={`${
-                new Date(conference.release_date) > currentDate
-                  ? ""
-                  : "line-through"
-              }`}
-            >
-              <TableCell className="font-medium">{conference.name}</TableCell>
-              <TableCell>
-                <Link
-                  target="_blank"
-                  href={generateTimeAndDateLink(
-                    conference.release_date,
-                    conference.time
-                  )}
-                >
-                  {`${conference.release_date} ${
-                    conference.time ? `| ${conference.time} UTC` : "| TBA"
-                  }`}
-                </Link>
-              </TableCell>
+      {conferences ? (
+        <Table className="mt-8 mb-8 w-full">
+          <TableCaption>All Conferences</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[150px]">Conference</TableHead>
+              <TableHead>Date</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {conferences.map((conference: Conference) => (
+              <TableRow
+                key={conference.id}
+                className={`${
+                  new Date(conference.release_date) > currentDate
+                    ? ""
+                    : "line-through"
+                }`}
+              >
+                <TableCell className="font-medium">{conference.name}</TableCell>
+                <TableCell>
+                  <Link
+                    target="_blank"
+                    href={generateTimeAndDateLink(
+                      conference.release_date,
+                      conference.time
+                    )}
+                  >
+                    {`${conference.release_date} ${
+                      conference.time ? `| ${conference.time} UTC` : "| TBA"
+                    }`}
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : null}
     </div>
   )
 }
