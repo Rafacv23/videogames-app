@@ -5,6 +5,7 @@ import Header from "@/components/Header"
 import { cn } from "@/lib/utils"
 import { Providers } from "@/components/Providers"
 import { siteConfig } from "@/config/site"
+import Footer from "@/components/Footer"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -40,6 +41,7 @@ export default function RootLayout({
             <main className="min-h-screen flex flex-col items-start justify-center p-6 lg:flex-row lg:gap-4">
               <div className="max-w-5xl w-full mx-auto">{children}</div>
             </main>
+            <Footer />
           </div>
         </Providers>
       </body>
