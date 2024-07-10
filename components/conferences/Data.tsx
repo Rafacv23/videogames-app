@@ -15,9 +15,9 @@ const ConferenceList: React.FC<ConferenceListProps> = ({
   totalPages,
 }) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between">
       <div className="max-w-5xl w-full mx-auto">
-        <h1 className="text-xl font-bold mb-4">Conferences in {year}</h1>
+        <h1 className="text-xl font-bold mb-8 mt-8">Conferences in {year}</h1>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           {data
             .filter((game) =>
@@ -29,17 +29,16 @@ const ConferenceList: React.FC<ConferenceListProps> = ({
               </li>
             ))}
         </ul>
-        <div>
+        <div className="flex items-center justify-between">
           <Link href={`#start`}>
             <Button variant={"outline"}>
               <MoveUp className="mr-2 h-4 w-4" />
               Back to top
             </Button>
           </Link>
-          <QueryPagination
-            totalPages={totalPages}
-            className="justify-end mt-4"
-          />
+          {totalPages ? (
+            <QueryPagination className="justify-end" totalPages={totalPages} />
+          ) : null}
         </div>
       </div>
     </div>
