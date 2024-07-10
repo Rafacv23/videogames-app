@@ -256,53 +256,16 @@ export const fetchConferencesYears = async ({
   }
 }
 
-export const fetchUpcomingGames = async () => {
-  const url = `http://localhost:3000/api/releases`
-
+export const fetchData = async (url: string) => {
   try {
     const res = await fetch(url)
     if (!res.ok) {
-      throw new Error("Failed to fetch upcoming games")
+      throw new Error(`Failed to fetch from ${url}`)
     }
-
     const data = await res.json()
-    return data.games
+    return data
   } catch (error) {
-    console.error("Error fetching upcoming games:", error)
-    throw error
-  }
-}
-
-export const fetchUpcomingConferences = async () => {
-  const url = `http://localhost:3000/api/conferences`
-
-  try {
-    const res = await fetch(url)
-    if (!res.ok) {
-      throw new Error("Failed to fetch upcoming conferences")
-    }
-
-    const data = await res.json()
-    return data.conferences
-  } catch (error) {
-    console.error("Error fetching upcoming conferences:", error)
-    throw error
-  }
-}
-
-export const fetchLastConference = async () => {
-  const url = `http://localhost:3000/api/watch/last`
-
-  try {
-    const res = await fetch(url)
-    if (!res.ok) {
-      throw new Error("Failed to fetch last conference")
-    }
-
-    const data = await res.json()
-    return data.conferences[0]
-  } catch (error) {
-    console.error("Error fetching last conference:", error)
+    console.error(`Error fetching from ${url}:`, error)
     throw error
   }
 }

@@ -10,11 +10,7 @@ import {
 } from "@/components/ui/table"
 import VideogameCard from "@/components/VideogameCard"
 import Player from "@/components/watch/Player"
-import {
-  fetchLastConference,
-  fetchUpcomingConferences,
-  fetchUpcomingGames,
-} from "@/lib/fetchs"
+import { fetchData } from "@/lib/fetchs"
 import { Conference, Game } from "@/lib/types"
 import { generateTimeAndDateLink, sortPosts } from "@/lib/utils"
 import Link from "next/link"
@@ -24,9 +20,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Banner from "@/components/Banner"
 
 export default async function Home() {
-  const upcomingReleases = await fetchUpcomingGames()
-  const upcomingConferences = await fetchUpcomingConferences()
-  const lastConference = await fetchLastConference()
+  const upcomingReleases = await fetchData("http://localhost:3000/api/releases")
+  const upcomingConferences = await fetchData(
+    "http://localhost:3000/api/conferences"
+  )
+  const lastConference = await fetchData("http://localhost:3000/api/watch/last")
   const sortedPosts = sortPosts(posts.slice(0, 3))
   const currentDate = new Date()
 
@@ -43,7 +41,7 @@ export default async function Home() {
               </Link>
             </CardHeader>
             <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-              {upcomingReleases.map((game: Game) => (
+              {upcomingReleases.games.map((game: Game) => (
                 <li key={game.id}>
                   <VideogameCard game={game} />
                 </li>
@@ -67,35 +65,37 @@ export default async function Home() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {upcomingConferences.map((conference: Conference) => (
-                    <TableRow
-                      key={conference.id}
-                      className={`${
-                        new Date(conference.release_date) > currentDate
-                          ? ""
-                          : "line-through"
-                      }`}
-                    >
-                      <TableCell className="font-medium">
-                        {conference.name}
-                      </TableCell>
-                      <TableCell>
-                        <Link
-                          target="_blank"
-                          href={generateTimeAndDateLink(
-                            conference.release_date,
-                            conference.time
-                          )}
-                        >
-                          {`${conference.release_date} ${
-                            conference.time
-                              ? `| ${conference.time} UTC`
-                              : "| TBA"
-                          }`}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {upcomingConferences.conferences.map(
+                    (conference: Conference) => (
+                      <TableRow
+                        key={conference.id}
+                        className={`${
+                          new Date(conference.release_date) > currentDate
+                            ? ""
+                            : "line-through"
+                        }`}
+                      >
+                        <TableCell className="font-medium">
+                          {conference.name}
+                        </TableCell>
+                        <TableCell>
+                          <Link
+                            target="_blank"
+                            href={generateTimeAndDateLink(
+                              conference.release_date,
+                              conference.time
+                            )}
+                          >
+                            {`${conference.release_date} ${
+                              conference.time
+                                ? `| ${conference.time} UTC`
+                                : "| TBA"
+                            }`}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    )
+                  )}
                 </TableBody>
               </Table>
             </CardContent>
@@ -108,7 +108,7 @@ export default async function Home() {
               </Link>
             </CardHeader>
             <CardContent className="flex justify-center">
-              <Player lastConference={lastConference} />
+              <Player lastConference={lastConference.conferences[0]} />
             </CardContent>
           </Card>
           <Card>
