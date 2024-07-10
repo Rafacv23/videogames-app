@@ -19,13 +19,13 @@ export default async function Watch({
   })
 
   return (
-    <main className="min-h-screen flex flex-col items-start justify-center p-6 lg:flex-row lg:gap-4">
+    <div className="min-h-screen flex flex-col items-start justify-center p-6 lg:flex-row lg:gap-4">
       <Player lastConference={selectedConference} conferences={conferences} />
       <Rewatch
         upcomingConference={upcomingConference}
         pastConferences={pastConferences}
         year={params.year}
       />
-    </main>
+    </div>
   )
 }

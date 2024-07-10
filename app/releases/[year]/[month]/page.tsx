@@ -16,7 +16,7 @@ export default async function Page({
   })
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="max-w-5xl w-full mx-auto">
         <h1 className="text-xl font-bold mb-4">
           Releases {params.year}/{params.month}
@@ -35,6 +35,6 @@ export default async function Page({
           </Button>
         </Link>
       </div>
-    </main>
+    </div>
   )
 }

@@ -37,7 +37,7 @@ export default async function GameId({
     const url = convertYoutubeUrl(game.trailer ? game.trailer : "")
 
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
+      <div className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
         <div className="max-w-5xl w-full mx-auto">
           <Card>
             <CardHeader className="flex md:items-center md:flex-row md:justify-between">
@@ -102,7 +102,7 @@ export default async function GameId({
             </CardFooter>
           </Card>
         </div>
-      </main>
+      </div>
     ) // Assuming game has a 'name' property
   } catch (error) {
     return (
