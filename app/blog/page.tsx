@@ -2,8 +2,14 @@ import { posts } from "#site/content"
 import { PostItem } from "@/components/blog/post-item"
 import { QueryPagination } from "@/components/blog/query-pagination"
 import { sortPosts } from "@/lib/utils"
+import { Metadata } from "next"
 
 const POSTS_PER_PAGE = 5
+
+export const metadata: Metadata = {
+  title: "Blog - Videogames App",
+  description: "My thoughts on the videogames industry",
+}
 
 interface BlogPageProps {
   searchParams: {
@@ -28,7 +34,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <div className="flex-1 space-y-4">
           <h1 className="inline-block font-black text-4xl lg:text-5xl">Blog</h1>
           <p className="text-xl text-muted-foreground">
-            My things about the videogames industry
+            My thoughts on the videogames industry
           </p>
         </div>
       </div>
