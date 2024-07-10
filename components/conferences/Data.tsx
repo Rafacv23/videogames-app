@@ -6,11 +6,13 @@ import { ConferenceListProps } from "@/lib/types"
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { MoveUp } from "lucide-react"
+import { QueryPagination } from "@/components/blog/query-pagination"
 
 const ConferenceList: React.FC<ConferenceListProps> = ({
   data,
   year,
   searchTerm,
+  totalPages,
 }) => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -27,12 +29,18 @@ const ConferenceList: React.FC<ConferenceListProps> = ({
               </li>
             ))}
         </ul>
-        <Link href={`#start`}>
-          <Button variant={"outline"}>
-            <MoveUp className="mr-2 h-4 w-4" />
-            Back to top
-          </Button>
-        </Link>
+        <div>
+          <Link href={`#start`}>
+            <Button variant={"outline"}>
+              <MoveUp className="mr-2 h-4 w-4" />
+              Back to top
+            </Button>
+          </Link>
+          <QueryPagination
+            totalPages={totalPages}
+            className="justify-end mt-4"
+          />
+        </div>
       </div>
     </main>
   )

@@ -13,7 +13,20 @@ import {
 } from "@/lib/fetchs"
 import { useRouter } from "next/navigation"
 
-export default function Page({ params }: { params: { year: string } }) {
+const GAMES_PER_PAGE = 20
+
+interface ConferencesPageProps {
+  searchParams: {
+    page?: string
+  }
+  params: {
+    year: string
+  }
+}
+export default function ConferencePage({
+  params,
+  searchParams,
+}: ConferencesPageProps) {
   const [position, setPosition] = useState("newest") // Default sorting option
   const [conferences, setConferences] = useState<Conference[]>([])
   const [nextConference, setNextConference] = useState<Conference | null>(null)
@@ -43,6 +56,14 @@ export default function Page({ params }: { params: { year: string } }) {
   // Apply sorting based on current position state
   const sortedGames = sortGamesByReleaseDate(data, position)
 
+  const currentPage = Number(searchParams?.page) || 1
+  const totalPages = Math.ceil(sortedGames.length / GAMES_PER_PAGE)
+
+  const displayGames = sortedGames.slice(
+    GAMES_PER_PAGE * (currentPage - 1),
+    GAMES_PER_PAGE * currentPage
+  )
+
   return (
     <>
       <NavBar
@@ -57,7 +78,12 @@ export default function Page({ params }: { params: { year: string } }) {
         conferenceYears={years}
         resetValues={resetValues}
       />
-      <Data data={sortedGames} year={params.year} searchTerm={searchTerm} />
+      <Data
+        data={displayGames}
+        year={params.year}
+        searchTerm={searchTerm}
+        totalPages={totalPages}
+      />
     </>
   )
 }
