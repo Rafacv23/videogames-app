@@ -10,6 +10,7 @@ import {
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import Search from "./Search"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Header() {
   return (
@@ -64,10 +65,15 @@ export default function Header() {
                     Blog
                   </a>
                 </li>
+                <li>
+                  <ThemeToggle />
+                </li>
               </ul>
             </nav>
 
             <div className="block md:hidden">
+              <ThemeToggle />
+
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <svg
