@@ -71,7 +71,7 @@ export default function Header() {
               </ul>
             </nav>
 
-            <div className="block md:hidden">
+            <div className="block md:hidden space-x-4">
               <ThemeToggle />
 
               <DropdownMenu>
