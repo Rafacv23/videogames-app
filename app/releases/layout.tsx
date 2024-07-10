@@ -8,8 +8,12 @@ export default function ReleasesLayout({
 }>) {
   return (
     <>
-      <Nav />
-      {children}
+      <div className="flex min-h-screen flex-col items-center justify-between">
+        <div className="max-w-5xl w-full mx-auto">
+          <Nav />
+          {children}
+        </div>
+      </div>
     </>
   )
 }
