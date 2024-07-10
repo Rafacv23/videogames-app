@@ -26,7 +26,7 @@ export default function Rewatch({
     <aside className="w-full lg:max-w-md">
       <Card className="mb-8 shadow-md">
         <CardHeader>
-          <div className="text-red-500 font-bold flex items-center gap-2">
+          <div className="text-red font-bold flex items-center gap-2">
             <CardDescription className="text-red-500 font-bold">
               COMING UP NEXT -
             </CardDescription>

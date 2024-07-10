@@ -19,7 +19,7 @@ const ConferenceLink: React.FC<ConferenceLinkProps> = ({
       className="flex items-center justify-between"
     >
       <div>
-        <CardDescription className="text-red-500 font-bold flex gap-2">
+        <CardDescription className="text-red font-bold flex gap-2">
           COMING UP NEXT
           {nextConference?.release_date ? (
             <MyTimer expiryTimestamp={new Date(nextConference.release_date)} />
