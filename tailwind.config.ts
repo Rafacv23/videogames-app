@@ -12,6 +12,7 @@ const config = {
   theme: {
     colors: {
       pistacho: "#77FF52",
+      red: "#ff5252",
     },
     container: {
       center: true,
