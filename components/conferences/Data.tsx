@@ -15,7 +15,7 @@ const ConferenceList: React.FC<ConferenceListProps> = ({
   totalPages,
 }) => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="max-w-5xl w-full mx-auto">
         <h1 className="text-xl font-bold mb-4">Conferences in {year}</h1>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
@@ -42,7 +42,7 @@ const ConferenceList: React.FC<ConferenceListProps> = ({
           />
         </div>
       </div>
-    </main>
+    </div>
   )
 }
 
