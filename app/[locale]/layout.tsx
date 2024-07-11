@@ -43,7 +43,7 @@ export default async function RootLayout({
   const { t, resources } = await initTranslations(params.locale, i18nNamespaces)
 
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",

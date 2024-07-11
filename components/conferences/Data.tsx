@@ -1,5 +1,3 @@
-// components/ConferenceList.tsx
-
 import React from "react"
 import VideogameCard from "@/components/VideogameCard"
 import { ConferenceListProps } from "@/lib/types"
