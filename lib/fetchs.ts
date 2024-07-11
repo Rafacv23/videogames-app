@@ -5,15 +5,6 @@ const devURL = "http://localhost:3000"
 
 const productionURL = siteConfig.url
 
-export const fetchWithFallback = async (endpoint: string) => {
-  try {
-    return await fetchData(`${productionURL}${endpoint}`)
-  } catch (error: any) {
-    console.warn(`Falling back to dev URL due to error: ${error.message}`)
-    return await fetchData(`${devURL}${endpoint}`)
-  }
-}
-
 // Function to fetch conferences data
 export const fetchConferences = async ({
   year,
@@ -24,9 +15,9 @@ export const fetchConferences = async ({
   setConferences: React.Dispatch<React.SetStateAction<Conference[]>>
   setNextConference: React.Dispatch<React.SetStateAction<Conference | null>>
 }) => {
-  const endpoint = `api/watch/${year}`
+  const endpoint = `${productionURL}/api/watch/${year}`
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
     if (!res.ok) {
       throw new Error("Failed to fetch conferences")
     }
@@ -46,9 +37,9 @@ export const fetchGames = async ({
   year: string
   setData: React.Dispatch<React.SetStateAction<Game[]>>
 }) => {
-  const endpoint = `/api/conferences/${year}`
+  const endpoint = `${productionURL}/api/conferences/${year}`
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
     if (!res.ok) {
       throw new Error("Failed to fetch games")
     }
@@ -68,9 +59,9 @@ export const fetchGamesByConference = async ({
   conferenceId: string
   setData: React.Dispatch<React.SetStateAction<Game[]>>
 }) => {
-  const endpoint = `/api/conferences/${year}/${conferenceId}`
+  const endpoint = `${productionURL}/api/conferences/${year}/${conferenceId}`
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
     if (!res.ok) {
       throw new Error("Failed to fetch games")
     }
@@ -92,9 +83,9 @@ export const fetchGamesByConferenceAndPlatform = async ({
   platformId: string
   setData: React.Dispatch<React.SetStateAction<Game[]>>
 }) => {
-  const endpoint = `/api/conferences/${year}/${conferenceId}/${platformId}`
+  const endpoint = `${productionURL}/api/conferences/${year}/${conferenceId}/${platformId}`
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
     if (!res.ok) {
       throw new Error("Failed to fetch games")
     }
@@ -110,9 +101,9 @@ export const fetchPlatforms = async ({
 }: {
   setPlatforms: React.Dispatch<React.SetStateAction<Platform[]>>
 }) => {
-  const endpoint = `/api/platforms`
+  const endpoint = `${productionURL}/api/platforms`
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
     if (!res.ok) {
       throw new Error("Failed to fetch platforms")
     }
@@ -130,10 +121,10 @@ export const fetchWatch = async ({
   year: string
   conferenceId?: string
 }) => {
-  const endpoint = `/api/watch/${year}`
+  const endpoint = `${productionURL}/api/watch/${year}`
 
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch data")
@@ -184,10 +175,10 @@ export const fetchReleasesMonthYear = async ({
   year: number | string
   month: number | string
 }) => {
-  const endpoint = `/api/releases/${year}/${month}`
+  const endpoint = `${productionURL}/api/releases/${year}/${month}`
 
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch releases")
@@ -211,10 +202,10 @@ export const fetchReleasesMonthYearPlatform = async ({
   month: number | string
   platformId: string
 }) => {
-  const endpoint = `/api/releases/${year}/${month}/${platformId}`
+  const endpoint = `${productionURL}/api/releases/${year}/${month}/${platformId}`
 
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch releases")
@@ -230,10 +221,10 @@ export const fetchReleasesMonthYearPlatform = async ({
 }
 
 export const fetchGame = async ({ gameId }: { gameId: string }) => {
-  const endpoint = `/api/game/${gameId}`
+  const endpoint = `${productionURL}/api/game/${gameId}`
 
   try {
-    const res = await fetchWithFallback(endpoint)
+    const res = await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch game")
@@ -253,10 +244,10 @@ export const fetchConferencesYears = async ({
 }: {
   setYears: React.Dispatch<React.SetStateAction<never[]>>
 }) => {
-  const endpoint = `/api/conferences/years`
+  const endpoint = `${productionURL}/api/conferences/years`
 
   try {
-    const res = await await fetchWithFallback(endpoint)
+    const res = await await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch years")
