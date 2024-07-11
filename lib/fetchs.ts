@@ -3,7 +3,7 @@ import { Conference, Game, Platform } from "./types"
 
 const devURL = "http://localhost:3000"
 
-const productionURL = siteConfig.url
+const productionURL = devURL
 
 // Function to fetch conferences data
 export const fetchConferences = async ({

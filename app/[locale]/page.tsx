@@ -21,11 +21,12 @@ import Banner from "@/components/Banner"
 import initTranslations from "../i18n"
 import { siteConfig } from "@/config/site"
 export default async function Home({ params }: { params: { locale: string } }) {
-  const upcomingReleases = await fetchData(`${siteConfig.url}/api/releases`)
+  //const upcomingReleases = await fetchData(`${siteConfig.url}/api/releases`)
+  const upcomingReleases = await fetchData(`http://localhost:3000/api/releases`)
   const upcomingConferences = await fetchData(
-    `${siteConfig.url}/api/conferences`
+    `http://localhost:3000/api/conferences`
   )
-  const lastConference = await fetchData(`${siteConfig.url}/api/watch/last`)
+  const lastConference = await fetchData(`http://localhost:3000/api/watch/last`)
   const sortedPosts = sortPosts(posts.slice(0, 3))
   const currentDate = new Date()
   const { t } = await initTranslations(params.locale, ["home", "common"])
