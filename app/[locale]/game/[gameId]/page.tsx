@@ -1,3 +1,4 @@
+import initTranslations from "@/app/i18n"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
@@ -25,8 +26,9 @@ import Link from "next/link"
 export default async function GameId({
   params,
 }: {
-  params: { gameId: string }
+  params: { gameId: string; locale: string }
 }) {
+  const { t } = await initTranslations(params.locale, ["videogame", "common"])
   try {
     const game: Game = await fetchGame({
       gameId: params.gameId,
@@ -50,7 +52,7 @@ export default async function GameId({
                   <Link href={game.url} target="blank">
                     <Button>
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      Game page
+                      {t("game-page")}
                     </Button>
                   </Link>
                 ) : null}
@@ -76,9 +78,9 @@ export default async function GameId({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Developer</TableHead>
-                    <TableHead>Publisher</TableHead>
-                    <TableHead>Early-access</TableHead>
+                    <TableHead>{t("developer")}</TableHead>
+                    <TableHead>{t("publisher")}</TableHead>
+                    <TableHead>{t("early-access")}</TableHead>
                     <TableHead>DLC</TableHead>
                     <TableHead>Remastered</TableHead>
                   </TableRow>
@@ -108,9 +110,9 @@ export default async function GameId({
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="max-w-5xl w-full mx-auto flex flex-col items-center justify-center gap-2">
-          No game for this query: {params.gameId}
-          <Link href={`/`}>
-            <Button>Try with other one</Button>
+          {t("error")}: {params.gameId}
+          <Link href={`/`} className="mt-8">
+            <Button>{t("try")}</Button>
           </Link>
         </div>
       </main>
