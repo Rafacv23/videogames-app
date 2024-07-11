@@ -6,7 +6,7 @@ import React from "react"
 export default async function Watch({
   params,
 }: {
-  params: { year: string; conferenceId: string }
+  params: { year: string; conferenceId: string; locale: string }
 }) {
   const {
     conferences,
@@ -20,8 +20,13 @@ export default async function Watch({
 
   return (
     <div className="min-h-screen flex flex-col items-start justify-center p-6 lg:flex-row lg:gap-4">
-      <Player lastConference={selectedConference} conferences={conferences} />
+      <Player
+        locale={params.locale}
+        lastConference={selectedConference}
+        conferences={conferences}
+      />
       <Rewatch
+        locale={params.locale}
         upcomingConference={upcomingConference}
         pastConferences={pastConferences}
         year={params.year}
