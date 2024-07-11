@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { Conference, Game, Platform } from "@/lib/types"
 import Data from "@/components/conferences/Data"
 import { sortGamesByReleaseDate } from "@/lib/utils"
@@ -12,6 +12,8 @@ import {
   fetchPlatforms,
 } from "@/lib/fetchs"
 import { useRouter } from "next/navigation"
+import Loader from "@/components/Loader"
+import Loading from "../loading"
 
 const GAMES_PER_PAGE = 20
 
@@ -80,13 +82,15 @@ export default function ConferencePage({
         resetValues={resetValues}
         locale={params.locale}
       />
-      <Data
-        data={displayGames}
-        year={params.year}
-        searchTerm={searchTerm}
-        totalPages={totalPages}
-        locale={params.locale}
-      />
+      <Suspense fallback={<Loading />}>
+        <Data
+          data={displayGames}
+          year={params.year}
+          searchTerm={searchTerm}
+          totalPages={totalPages}
+          locale={params.locale}
+        />
+      </Suspense>
     </>
   )
 }
