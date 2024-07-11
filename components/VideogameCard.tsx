@@ -11,8 +11,17 @@ import { Badge } from "./ui/badge"
 import { Game } from "@/lib/types"
 import Link from "next/link"
 import { Button } from "./ui/button"
+import initTranslations from "@/app/i18n"
 
-export default function VideogameCard({ game }: { game: Game }) {
+export default async function VideogameCard({
+  game,
+  locale,
+}: {
+  game: Game
+  locale?: string
+}) {
+  const { t } = await initTranslations(locale, ["common"])
+
   // Separar las plataformas por comas y limpiar espacios
   const platforms = game.platforms
     ?.split(",")
@@ -52,7 +61,7 @@ export default function VideogameCard({ game }: { game: Game }) {
       </CardFooter>
       <CardFooter>
         <Link href={`/game/${game.id}`}>
-          <Button>Learn More</Button>
+          <Button>{t("see-more")}</Button>
         </Link>
       </CardFooter>
     </Card>

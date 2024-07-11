@@ -1,7 +1,10 @@
 import { siteConfig } from "@/config/site"
 import { Button } from "./ui/button"
+import initTranslations from "@/app/i18n"
 
-export default function Banner() {
+export default async function Banner({ locale }: { locale: string }) {
+  const { t } = await initTranslations(locale, ["home", "common"])
+
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
@@ -10,7 +13,7 @@ export default function Banner() {
             {siteConfig.name}
           </h1>
           <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-            {siteConfig.description}
+            {t("banner-description")}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a href="#">

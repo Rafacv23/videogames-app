@@ -12,23 +12,28 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import MyTimer from "../Countdown"
 import { Conference } from "@/lib/types"
+import initTranslations from "@/app/i18n"
 
-export default function Rewatch({
+export default async function Rewatch({
   upcomingConference,
   pastConferences,
   year,
+  locale,
 }: {
   upcomingConference: Conference
   pastConferences: Conference[]
   year: number | string
+  locale: string
 }) {
+  const { t } = await initTranslations(locale, ["watch", "common"])
+
   return (
     <aside className="w-full lg:max-w-md">
       <Card className="mb-8 shadow-md">
         <CardHeader>
           <div className="text-red font-bold flex items-center gap-2">
             <CardDescription className="text-red-500 font-bold">
-              COMING UP NEXT -
+              {t("next")} -
             </CardDescription>
             <MyTimer
               expiryTimestamp={new Date(upcomingConference.release_date)}
@@ -41,7 +46,7 @@ export default function Rewatch({
         <CardHeader>
           <CardTitle className="flex items-center">
             <StepBack className="mr-2 h-4 w-4" />
-            Rewatch
+            {t("rewatch")}
           </CardTitle>
         </CardHeader>
         <Separator />

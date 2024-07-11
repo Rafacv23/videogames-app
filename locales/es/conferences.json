@@ -1,0 +1,13 @@
+{
+  "reset": "Reiniciar",
+  "filters": "Filtros",
+  "conferences": "Conferencias",
+  "conferences-error": "No hay conferencias planeadas para este año",
+  "year": "Año",
+  "sorting": "Ordenar",
+  "newest": "Nuevos",
+  "oldest": "Antiguos",
+  "search-placeholder": "Buscar juegos...",
+  "calendar": "Calendario",
+  "next": "A CONTINUACIÓN"
+}

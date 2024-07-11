@@ -1,7 +1,8 @@
 import { siteConfig } from "@/config/site"
 import { Github, Mail } from "lucide-react"
+import { LanguageChanger } from "@/components/LanguageChanger"
 
-export default function Footer() {
+export default async function Footer() {
   return (
     <footer>
       <div className="mb-6 mt-14 flex flex-col items-center">
@@ -20,6 +21,7 @@ export default function Footer() {
             {siteConfig.author}
           </a>
         </div>
+        <LanguageChanger />
       </div>
     </footer>
   )

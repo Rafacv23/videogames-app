@@ -15,8 +15,9 @@ import { useRouter } from "next/navigation"
 import { RotateCcw } from "lucide-react"
 import { fetchPlatforms } from "@/lib/fetchs"
 import { Platform } from "@/lib/types"
+import { useTranslation } from "react-i18next"
 
-export default function Nav() {
+export default function Nav({ locale }: { locale: string }) {
   const router = useRouter()
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
@@ -46,6 +47,8 @@ export default function Nav() {
     }
   }, [month, year, selectedPlatform, router])
 
+  const { t } = useTranslation(locale)
+
   return (
     <nav
       id="start"
@@ -53,33 +56,33 @@ export default function Nav() {
     >
       <Select value={month} onValueChange={(value) => setMonth(value)}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Month" />
+          <SelectValue placeholder={t("releases:month")} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Months</SelectLabel>
-            <SelectItem value="1">January</SelectItem>
-            <SelectItem value="2">February</SelectItem>
-            <SelectItem value="3">March</SelectItem>
-            <SelectItem value="4">April</SelectItem>
-            <SelectItem value="5">May</SelectItem>
-            <SelectItem value="6">June</SelectItem>
-            <SelectItem value="7">July</SelectItem>
-            <SelectItem value="8">August</SelectItem>
-            <SelectItem value="9">September</SelectItem>
-            <SelectItem value="10">October</SelectItem>
-            <SelectItem value="11">November</SelectItem>
-            <SelectItem value="12">December</SelectItem>
+            <SelectLabel>{t("releases:month")}</SelectLabel>
+            <SelectItem value="1">{t("releases:january")}</SelectItem>
+            <SelectItem value="2">{t("releases:february")}</SelectItem>
+            <SelectItem value="3">{t("releases:march")}</SelectItem>
+            <SelectItem value="4">{t("releases:april")}</SelectItem>
+            <SelectItem value="5">{t("releases:may")}</SelectItem>
+            <SelectItem value="6">{t("releases:june")}</SelectItem>
+            <SelectItem value="7">{t("releases:july")}</SelectItem>
+            <SelectItem value="8">{t("releases:august")}</SelectItem>
+            <SelectItem value="9">{t("releases:september")}</SelectItem>
+            <SelectItem value="10">{t("releases:october")}</SelectItem>
+            <SelectItem value="11">{t("releases:november")}</SelectItem>
+            <SelectItem value="12">{t("releases:december")}</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
       <Select value={year} onValueChange={(value) => setYear(value)}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Year" />
+          <SelectValue placeholder={t("releases:year")} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Years</SelectLabel>
+            <SelectLabel>{t("releases:year")}</SelectLabel>
             <SelectItem value="2024">2024</SelectItem>
             <SelectItem value="2025">2025</SelectItem>
             <SelectItem value="2026">2026</SelectItem>
@@ -91,11 +94,11 @@ export default function Nav() {
         onValueChange={(value) => setSelectedPlatform(value)}
       >
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Platform" />
+          <SelectValue placeholder={t("releases:platform")} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Platforms</SelectLabel>
+            <SelectLabel>{t("releases:platform")}</SelectLabel>
             {platforms
               ? platforms.map((platform) => (
                   <SelectItem key={platform.id} value={platform.id}>
@@ -108,7 +111,7 @@ export default function Nav() {
       </Select>
       <Button onClick={resetValues} className="w-[180px]">
         <RotateCcw className="mr-2 h-4 w-4" />
-        Reset
+        {t("releases:reset")}
       </Button>
     </nav>
   )

@@ -21,6 +21,7 @@ interface ConferencesPageProps {
   }
   params: {
     year: string
+    locale: string
   }
 }
 export default function ConferencePage({
@@ -77,12 +78,14 @@ export default function ConferencePage({
         platforms={platforms}
         conferenceYears={years}
         resetValues={resetValues}
+        locale={params.locale}
       />
       <Data
         data={displayGames}
         year={params.year}
         searchTerm={searchTerm}
         totalPages={totalPages}
+        locale={params.locale}
       />
     </>
   )

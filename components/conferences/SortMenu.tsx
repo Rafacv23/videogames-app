@@ -10,20 +10,31 @@ import {
 import { Button } from "@/components/ui/button"
 import { ArrowDownUp } from "lucide-react"
 import { SortMenuProps } from "@/lib/types"
+import { useTranslation } from "react-i18next"
 
-const SortMenu: React.FC<SortMenuProps> = ({ position, setPosition }) => {
+const SortMenu: React.FC<SortMenuProps> = ({
+  position,
+  setPosition,
+  locale,
+}) => {
+  const { t } = useTranslation(locale)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <ArrowDownUp className="mr-2 h-4 w-4" />
-          Sorting
+          {t("conferences:sorting")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="newest">Newest</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="oldest">Oldest</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="newest">
+            {t("conferences:newest")}
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="oldest">
+            {t("conferences:oldest")}
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

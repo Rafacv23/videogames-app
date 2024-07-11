@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation"
 export default function Page({
   params,
 }: {
-  params: { year: string; conferenceId: string }
+  params: { year: string; conferenceId: string; locale: string }
 }) {
   const [position, setPosition] = useState("newest") // Default sorting option
   const [conferences, setConferences] = useState<Conference[]>([])
@@ -54,6 +54,7 @@ export default function Page({
   return (
     <>
       <NavBar
+        locale={params.locale}
         conferences={conferences}
         nextConference={nextConference}
         searchTerm={searchTerm}
@@ -65,7 +66,12 @@ export default function Page({
         conferenceYears={years}
         resetValues={resetValues}
       />
-      <Data data={sortedGames} year={params.year} searchTerm={searchTerm} />
+      <Data
+        data={sortedGames}
+        year={params.year}
+        searchTerm={searchTerm}
+        locale={params.locale}
+      />
     </>
   )
 }

@@ -1,5 +1,3 @@
-// SearchBar.js
-
 import React, { useState } from "react"
 import { Game } from "@/lib/types"
 import { Input } from "./ui/input"
@@ -12,7 +10,15 @@ import {
   DialogTrigger,
 } from "./ui/dialog"
 import { Separator } from "./ui/separator"
-const Search = ({ className }: { className?: string }) => {
+import { useTranslation } from "react-i18next"
+
+const Search = ({
+  className,
+  locale,
+}: {
+  className?: string
+  locale: string
+}) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [results, setResults] = useState([])
 
@@ -30,19 +36,21 @@ const Search = ({ className }: { className?: string }) => {
     }
   }
 
+  const { t } = useTranslation(locale)
+
   return (
     <Dialog>
-      <DialogTrigger className={className}>Search</DialogTrigger>
+      <DialogTrigger className={className}>{t("search")}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Search</DialogTitle>
-          <DialogDescription>Find your favourite game</DialogDescription>
+          <DialogTitle>{t("search")}</DialogTitle>
+          <DialogDescription>{t("search-dialog")}</DialogDescription>
         </DialogHeader>
         <Input
           type="text"
           value={searchTerm}
           onChange={handleChange}
-          placeholder="Search games..."
+          placeholder={t("search-placeholder")}
         />
         <ul className="flex flex-col gap-4 mt-4">
           {results.map((game: Game) => (

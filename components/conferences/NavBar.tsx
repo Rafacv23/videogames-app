@@ -9,6 +9,7 @@ import ConferenceLink from "./ConferenceLink"
 import SearchBar from "./SearchBar"
 import SortMenu from "./SortMenu"
 import FilterMenu from "./FilterMenu"
+import { useTranslation } from "react-i18next"
 
 const NavBar: React.FC<NavBarProps> = ({
   conferences,
@@ -21,7 +22,10 @@ const NavBar: React.FC<NavBarProps> = ({
   platforms,
   conferenceYears,
   resetValues,
+  locale,
 }) => {
+  const { t } = useTranslation(locale)
+
   return (
     <nav
       id="start"
@@ -29,13 +33,26 @@ const NavBar: React.FC<NavBarProps> = ({
     >
       <Card>
         <CardHeader className="md:flex md:flex-row justify-around md:items-end">
-          <ConferencesDropdown conferences={conferences} />
-          <ConferenceLink nextConference={nextConference} year={year} />
+          <ConferencesDropdown conferences={conferences} locale={locale} />
+          <ConferenceLink
+            nextConference={nextConference}
+            year={year}
+            locale={locale}
+          />
         </CardHeader>
         <CardContent className="flex flex-col md:flex-row gap-2">
-          <SearchBar searchTerm={searchTerm} onSearchChange={onSearchChange} />
-          <SortMenu position={position} setPosition={setPosition} />
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={onSearchChange}
+            locale={locale}
+          />
+          <SortMenu
+            position={position}
+            setPosition={setPosition}
+            locale={locale}
+          />
           <FilterMenu
+            locale={locale}
             conferences={conferences}
             platforms={platforms}
             conferenceYears={conferenceYears}
@@ -43,7 +60,7 @@ const NavBar: React.FC<NavBarProps> = ({
           />
           <Button onClick={resetValues}>
             <RotateCcw className="mr-2 h-4 w-4" />
-            Reset
+            {t("conferences:reset")}
           </Button>
         </CardContent>
       </Card>

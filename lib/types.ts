@@ -35,6 +35,7 @@ export interface ConferenceListProps {
   year: string
   searchTerm: string
   totalPages?: number
+  locale: string
 }
 
 export interface NavBarProps {
@@ -48,6 +49,7 @@ export interface NavBarProps {
   platforms: Platform[]
   conferenceYears: string[]
   resetValues: () => void
+  locale: string
 }
 
 export interface FilterMenuProps {
@@ -55,25 +57,30 @@ export interface FilterMenuProps {
   conferences: { id: string; name: string }[]
   platforms: Platform[]
   conferenceYears: string[]
+  locale: string
 }
 
 export interface ConferencesDropdownProps {
   conferences: Conference[]
+  locale: string
 }
 
 export interface ConferenceLinkProps {
   nextConference: Conference | null
   year: string
+  locale: string
 }
 
 export interface SearchBarProps {
   searchTerm: string
   onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  locale: string
 }
 
 export interface SortMenuProps {
   position: string
   setPosition: (value: string) => void
+  locale: string
 }
 
 export interface Platform {

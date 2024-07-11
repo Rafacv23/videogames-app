@@ -16,19 +16,23 @@ import { Button } from "@/components/ui/button"
 import { Filter, Calendar, TicketCheck } from "lucide-react"
 import { FilterMenuProps } from "@/lib/types"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 const FilterMenu: React.FC<FilterMenuProps> = ({
   conferences,
   year,
   platforms,
   conferenceYears,
+  locale,
 }) => {
+  const { t } = useTranslation(locale)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <Filter className="mr-2 h-4 w-4" />
-          Filters
+          {t("conferences:filters")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
@@ -36,7 +40,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <TicketCheck className="mr-2 h-4 w-4" />
-              <span>Conferences</span>
+              <span>{t("conferences:conferences")}</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
@@ -54,7 +58,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
                     ))
                   ) : (
                     <DropdownMenuItem>
-                      No conferences planned for this year
+                      {t("conferences:conferences-error")}
                     </DropdownMenuItem>
                   )}
                 </DropdownMenuRadioGroup>
@@ -64,7 +68,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <Calendar className="mr-2 h-4 w-4" />
-              <span>Year</span>
+              <span>{t("conferences:year")}</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>

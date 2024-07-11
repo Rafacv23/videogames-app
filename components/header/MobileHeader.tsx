@@ -7,11 +7,14 @@ import {
 import Link from "next/link"
 import Search from "../Search"
 import ThemeToggle from "../ThemeToggle"
+import { useTranslation } from "react-i18next"
 
-export default function MobileHeader() {
+export default function MobileHeader({ locale }: { locale: string }) {
+  const { t } = useTranslation(locale)
+
   return (
     <div className="block md:hidden space-x-4">
-      <ThemeToggle />
+      <ThemeToggle locale={locale} />
       <DropdownMenu>
         <DropdownMenuTrigger>
           <svg
@@ -30,18 +33,21 @@ export default function MobileHeader() {
           </svg>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <Search className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" />
+          <Search
+            locale={locale}
+            className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+          />
           <Link href="/releases">
-            <DropdownMenuItem>Releases</DropdownMenuItem>
+            <DropdownMenuItem>{t("releases")}</DropdownMenuItem>
           </Link>
           <Link href="/conferences">
-            <DropdownMenuItem>Conferences</DropdownMenuItem>
+            <DropdownMenuItem>{t("conferences")}</DropdownMenuItem>
           </Link>
           <Link href="/watch">
-            <DropdownMenuItem>Watch</DropdownMenuItem>
+            <DropdownMenuItem>{t("watch")}</DropdownMenuItem>
           </Link>
           <Link href="/blog">
-            <DropdownMenuItem>Blog</DropdownMenuItem>
+            <DropdownMenuItem>{t("blog")}</DropdownMenuItem>
           </Link>
         </DropdownMenuContent>
       </DropdownMenu>

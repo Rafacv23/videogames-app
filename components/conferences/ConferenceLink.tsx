@@ -4,11 +4,15 @@ import { ConferenceLinkProps } from "@/lib/types"
 import { CardDescription } from "@/components/ui/card"
 import Link from "next/link"
 import MyTimer from "../Countdown"
+import { useTranslation } from "react-i18next"
 
 const ConferenceLink: React.FC<ConferenceLinkProps> = ({
   nextConference,
   year,
+  locale,
 }) => {
+  const { t } = useTranslation(locale)
+
   return (
     <Link
       href={
@@ -20,7 +24,7 @@ const ConferenceLink: React.FC<ConferenceLinkProps> = ({
     >
       <div>
         <CardDescription className="text-red font-bold flex gap-2">
-          COMING UP NEXT
+          {t("conferences:next")}
           {nextConference?.release_date ? (
             <MyTimer expiryTimestamp={new Date(nextConference.release_date)} />
           ) : null}

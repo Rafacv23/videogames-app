@@ -1,0 +1,13 @@
+{
+  "reset": "Reset",
+  "filters": "Filters",
+  "conferences": "Conferences",
+  "conferences-error": "No conferences planned for the current year",
+  "year": "Year",
+  "sorting": "Sorting",
+  "newest": "Newest",
+  "oldest": "Oldest",
+  "search-placeholder": "Searching games...",
+  "calendar": "Calendar",
+  "next": "COMING UP NEXT"
+}

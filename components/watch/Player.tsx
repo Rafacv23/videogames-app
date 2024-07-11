@@ -18,14 +18,18 @@ import Link from "next/link"
 import { convertYoutubeUrl, generateTimeAndDateLink } from "@/lib/utils"
 import { ExternalLink } from "lucide-react"
 import { Conference } from "@/lib/types"
-export default function Player({
+import initTranslations from "@/app/i18n"
+export default async function Player({
   lastConference,
   conferences,
+  locale,
 }: {
   lastConference: Conference
   conferences?: Conference[]
+  locale: string
 }) {
   const currentDate = new Date()
+  const { t } = await initTranslations(locale, ["watch", "common"])
 
   const url = convertYoutubeUrl(lastConference.url ? lastConference.url : "")
 
@@ -46,18 +50,20 @@ export default function Player({
               className="flex items-center mt-2 hover:text-white hover:transition-colors"
             >
               <ExternalLink className="mr-2 h-4 w-4" />
-              Open in new tab
+              {t("new-tab-btn")}
             </Link>
           </CardDescription>
         </CardHeader>
       </Card>
       {conferences ? (
         <Table className="mt-8 mb-8 w-full">
-          <TableCaption>All Conferences</TableCaption>
+          <TableCaption>{t("common:conference-table-caption")}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Conference</TableHead>
-              <TableHead>Date</TableHead>
+              <TableHead>
+                {t("common:conference-table-head-conference")}
+              </TableHead>
+              <TableHead>{t("common:conference-table-head-date")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
