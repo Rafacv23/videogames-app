@@ -9,10 +9,12 @@ export default function DesktopHeader({ locale }: { locale: string }) {
   return (
     <nav aria-label="Global" className="hidden md:block">
       <ul className="flex items-center gap-6 text-sm">
-        <Search
-          locale={locale}
-          className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-        />
+        <li>
+          <Search
+            locale={locale}
+            className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+          />
+        </li>
         <li>
           <Link
             className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"

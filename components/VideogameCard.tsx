@@ -47,6 +47,8 @@ export default async function VideogameCard({
           src={game.img}
           alt={`${game.name} logo`}
           className="max-w-full h-auto max-h-32"
+          width={324}
+          height={151}
           loading="lazy"
         />
       </CardContent>

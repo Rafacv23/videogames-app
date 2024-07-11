@@ -19,6 +19,7 @@ import { convertYoutubeUrl, generateTimeAndDateLink } from "@/lib/utils"
 import { ExternalLink } from "lucide-react"
 import { Conference } from "@/lib/types"
 import initTranslations from "@/app/i18n"
+
 export default async function Player({
   lastConference,
   conferences,

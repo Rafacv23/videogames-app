@@ -19,7 +19,6 @@ import { PostItem } from "@/components/blog/post-item"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Banner from "@/components/Banner"
 import initTranslations from "../i18n"
-import { siteConfig } from "@/config/site"
 export default async function Home({ params }: { params: { locale: string } }) {
   //const upcomingReleases = await fetchData(`${siteConfig.url}/api/releases`)
   const upcomingReleases = await fetchData(`http://localhost:3000/api/releases`)
