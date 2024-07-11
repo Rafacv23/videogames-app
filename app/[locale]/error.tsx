@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next"
 
 export default function Error({
   error,
@@ -17,7 +18,7 @@ export default function Error({
 
   return (
     <main className="max-w-3xl mx-auto p-6 h-screen flex flex-col justify-center items-center">
-      <h2 className="mb-4">Something went wrong!</h2>
+      <h2 className="mb-4">Ups! Something went wrong.</h2>
       <Button
         onClick={
           // Attempt to recover by trying to re-render the segment
