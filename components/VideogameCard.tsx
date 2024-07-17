@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import {
   Card,
   CardHeader,
@@ -12,6 +12,7 @@ import { Game } from "@/lib/types"
 import Link from "next/link"
 import { Button } from "./ui/button"
 import initTranslations from "@/app/i18n"
+import { Skeleton } from "./ui/skeleton"
 
 export default async function VideogameCard({
   game,
@@ -43,14 +44,16 @@ export default async function VideogameCard({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <img
-          src={game.img}
-          alt={`${game.name} logo`}
-          className="max-w-full h-auto max-h-32"
-          width={324}
-          height={151}
-          loading="lazy"
-        />
+        <Suspense fallback={<Skeleton />}>
+          <img
+            src={game.img}
+            alt={`${game.name} logo`}
+            className="max-w-full h-auto max-h-32"
+            width={324}
+            height={151}
+            loading="lazy"
+          />
+        </Suspense>
       </CardContent>
       <CardFooter>
         <ul className="mt-2 flex flex-wrap">
