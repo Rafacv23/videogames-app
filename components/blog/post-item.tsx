@@ -3,6 +3,7 @@ import Link from "next/link"
 import { buttonVariants } from "../ui/button"
 import { cn, formatDate } from "@/lib/utils"
 import initTranslations from "@/app/i18n"
+import { Separator } from "../ui/separator"
 
 interface PostItemProps {
   slug: string
@@ -22,7 +23,7 @@ export async function PostItem({
   const { t } = await initTranslations(locale, ["blog", "common"])
 
   return (
-    <article className="flex flex-col gap-4 border-border border-b py-3">
+    <article className="flex flex-col gap-4 py-3">
       <div>
         <h2 className="text-2xl font-bold">
           <Link href={slug}>{title}</Link>
@@ -44,6 +45,7 @@ export async function PostItem({
           {t("read-more-btn")}
         </Link>
       </div>
+      <Separator />
     </article>
   )
 }

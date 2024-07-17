@@ -2,6 +2,7 @@ import { posts } from "#site/content"
 import initTranslations from "@/app/i18n"
 import { PostItem } from "@/components/blog/post-item"
 import { QueryPagination } from "@/components/blog/query-pagination"
+import { Separator } from "@/components/ui/separator"
 import { sortPosts } from "@/lib/utils"
 import { Metadata } from "next"
 
@@ -45,7 +46,7 @@ export default async function BlogPage({
           <p className="text-xl text-muted-foreground">{t("subheader")}</p>
         </div>
       </div>
-      <hr className="mt-8" />
+      <Separator className="mt-8" />
       {displayPosts?.length > 0 ? (
         <ul className="flex flex-col">
           {displayPosts.map((post) => {

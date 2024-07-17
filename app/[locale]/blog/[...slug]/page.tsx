@@ -1,6 +1,7 @@
 import { posts } from "#site/content"
 import { MDXContent } from "@/components/blog/mdx-components"
 import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 import { siteConfig } from "@/config/site"
 import { BackpackIcon, ChevronLeft } from "lucide-react"
 import { Metadata } from "next"
@@ -79,8 +80,9 @@ export default async function PostPage({ params }: PostPageProps) {
       {post.description ? (
         <p className="text-xl mt-0 text-muted-foreground">{post.description}</p>
       ) : null}
-      <hr className="my-4" />
+      <Separator className="mb-8" />
       <MDXContent code={post.body} />
+      <Separator className="mb-8" />
       <Link href={"/blog"}>
         <Button variant={"outline"}>
           <ChevronLeft />
