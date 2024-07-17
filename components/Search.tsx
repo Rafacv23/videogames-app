@@ -42,6 +42,7 @@ const Search = ({
     <Dialog>
       <DialogTrigger className={className}>{t("search")}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
+        bu
         <DialogHeader>
           <DialogTitle>{t("search")}</DialogTitle>
           <DialogDescription>{t("search-dialog")}</DialogDescription>

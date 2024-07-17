@@ -19,6 +19,7 @@ import { convertYoutubeUrl, generateTimeAndDateLink } from "@/lib/utils"
 import { ExternalLink } from "lucide-react"
 import { Conference } from "@/lib/types"
 import initTranslations from "@/app/i18n"
+import { Button } from "../ui/button"
 
 export default async function Player({
   lastConference,
@@ -50,8 +51,10 @@ export default async function Player({
               href={`https://www.youtube.com/embed/${url}`}
               className="flex items-center mt-2 hover:text-white hover:transition-colors"
             >
-              <ExternalLink className="mr-2 h-4 w-4" />
-              {t("new-tab-btn")}
+              <Button variant="outline">
+                <ExternalLink className="mr-2 h-4 w-4" />
+                {t("new-tab-btn")}
+              </Button>
             </Link>
           </CardDescription>
         </CardHeader>
