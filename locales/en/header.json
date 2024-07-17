@@ -10,5 +10,6 @@
   "conferences": "Conferences",
   "releases": "Releases",
   "watch": "Watch",
-  "blog": "Blog"
+  "blog": "Blog",
+  "search-error": "No games found"
 }

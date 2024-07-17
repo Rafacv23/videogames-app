@@ -10,5 +10,6 @@
   "releases": "Lanzamientos",
   "conferences": "Conferencias",
   "watch": "Ver",
-  "blog": "Blog"
+  "blog": "Blog",
+  "search-error": "No hemos encontrado ningún juego"
 }
