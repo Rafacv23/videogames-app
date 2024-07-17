@@ -24,6 +24,7 @@ import { CircleCheck, CircleX, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
+import ShareBtn from "@/components/ShareBtn"
 
 export default async function GameId({
   params,
@@ -49,7 +50,8 @@ export default async function GameId({
                 <CardTitle>{game.name}</CardTitle>
                 <CardDescription>{game.release_date}</CardDescription>
               </div>
-              <div>
+              <div className="flex gap-2">
+                <ShareBtn />
                 {game.url ? (
                   <Link href={game.url} target="blank">
                     <Button>
