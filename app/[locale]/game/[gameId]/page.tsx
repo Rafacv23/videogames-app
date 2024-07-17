@@ -22,6 +22,8 @@ import { Game } from "@/lib/types"
 import { convertYoutubeUrl } from "@/lib/utils"
 import { CircleCheck, CircleX, ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { Suspense } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default async function GameId({
   params,
@@ -59,12 +61,14 @@ export default async function GameId({
               </div>
             </CardHeader>
             <CardContent>
-              <iframe
-                height="315"
-                src={`https://www.youtube.com/embed/${url}`}
-                className="w-full rounded-t-md"
-                title="Conference Video"
-              ></iframe>
+              <Suspense fallback={<Skeleton />}>
+                <iframe
+                  height="315"
+                  src={`https://www.youtube.com/embed/${url}`}
+                  className="w-full rounded-t-md"
+                  title="Conference Video"
+                ></iframe>
+              </Suspense>
               <p className="mt-8">{game.description}</p>
             </CardContent>
             <CardFooter className="justify-start flex flex-col items-center gap-4">
