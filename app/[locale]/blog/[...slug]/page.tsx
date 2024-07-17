@@ -1,7 +1,10 @@
 import { posts } from "#site/content"
 import { MDXContent } from "@/components/blog/mdx-components"
+import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
+import { BackpackIcon, ChevronLeft } from "lucide-react"
 import { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface PostPageProps {
@@ -78,6 +81,11 @@ export default async function PostPage({ params }: PostPageProps) {
       ) : null}
       <hr className="my-4" />
       <MDXContent code={post.body} />
+      <Link href={"/blog"}>
+        <Button variant={"outline"}>
+          <ChevronLeft />
+        </Button>
+      </Link>
     </article>
   )
 }
