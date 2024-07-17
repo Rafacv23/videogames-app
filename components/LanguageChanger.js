@@ -41,7 +41,7 @@ export function LanguageChanger() {
 
   return (
     <Select onValueChange={handleChange} value={currentLocale}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px]" aria-label="Change language">
         <span className="sr-only">{currentLocale}</span>
         <SelectValue placeholder={currentLocale} />
       </SelectTrigger>

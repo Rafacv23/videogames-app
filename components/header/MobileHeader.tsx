@@ -16,7 +16,7 @@ export default function MobileHeader({ locale }: { locale: string }) {
     <div className="block md:hidden space-x-4">
       <ThemeToggle locale={locale} />
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger aria-label="Open menu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
