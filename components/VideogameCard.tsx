@@ -32,9 +32,9 @@ export default async function VideogameCard({
     <Card className="w-full max-w-xs mx-auto h-full">
       <CardHeader>
         {game.conference_name && game.conference_url ? (
-          <CardDescription>
+          <CardDescription className="mb-4">
             <Link href={game.conference_url} target="blank">
-              {game.conference_name}
+              <Button variant={"outline"}>{game.conference_name}</Button>
             </Link>
           </CardDescription>
         ) : null}
