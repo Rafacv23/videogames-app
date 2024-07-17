@@ -55,7 +55,7 @@ export default function Nav({ locale }: { locale: string }) {
       className="flex flex-col md:flex-row items-center justify-center md:space-x-4 top-16 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
       <Select value={month} onValueChange={(value) => setMonth(value)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label={t("releases:month")}>
           <SelectValue placeholder={t("releases:month")} />
         </SelectTrigger>
         <SelectContent>
@@ -77,7 +77,7 @@ export default function Nav({ locale }: { locale: string }) {
         </SelectContent>
       </Select>
       <Select value={year} onValueChange={(value) => setYear(value)}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label={t("releases:year")}>
           <SelectValue placeholder={t("releases:year")} />
         </SelectTrigger>
         <SelectContent>
@@ -93,7 +93,10 @@ export default function Nav({ locale }: { locale: string }) {
         value={selectedPlatform}
         onValueChange={(value) => setSelectedPlatform(value)}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger
+          className="w-[180px]"
+          aria-label={t("releases:platform")}
+        >
           <SelectValue placeholder={t("releases:platform")} />
         </SelectTrigger>
         <SelectContent>
