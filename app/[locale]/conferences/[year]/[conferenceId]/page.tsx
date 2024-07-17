@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { Conference, Game, Platform } from "@/lib/types"
 import Data from "@/components/conferences/Data"
 import { sortGamesByReleaseDate } from "@/lib/utils"
@@ -12,6 +12,8 @@ import {
   fetchPlatforms,
 } from "@/lib/fetchs"
 import { useRouter } from "next/navigation"
+import Loading from "../../loading"
+import { Button } from "@/components/ui/button"
 
 export default function Page({
   params,
@@ -66,12 +68,28 @@ export default function Page({
         conferenceYears={years}
         resetValues={resetValues}
       />
-      <Data
-        data={sortedGames}
-        year={params.year}
-        searchTerm={searchTerm}
-        locale={params.locale}
-      />
+      <Suspense fallback={<Loading />}>
+        {sortedGames.length !== 0 ? (
+          <Data
+            data={sortedGames}
+            year={params.year}
+            searchTerm={searchTerm}
+            locale={params.locale}
+          />
+        ) : (
+          <div className="max-w-3xl mx-auto p-6 h-screen flex flex-col justify-center items-center">
+            <h2 className="mb-4">Ups! Something went wrong.</h2>
+            <Button
+              onClick={
+                // Attempt to recover by trying to re-render the segment
+                () => router.push(`/conferences/${params.year}`)
+              }
+            >
+              Try again
+            </Button>
+          </div>
+        )}
+      </Suspense>
     </>
   )
 }

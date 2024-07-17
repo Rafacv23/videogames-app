@@ -12,8 +12,8 @@ import {
   fetchPlatforms,
 } from "@/lib/fetchs"
 import { useRouter } from "next/navigation"
-import Loader from "@/components/Loader"
 import Loading from "../loading"
+import { Button } from "@/components/ui/button"
 
 const GAMES_PER_PAGE = 20
 
@@ -83,13 +83,27 @@ export default function ConferencePage({
         locale={params.locale}
       />
       <Suspense fallback={<Loading />}>
-        <Data
-          data={displayGames}
-          year={params.year}
-          searchTerm={searchTerm}
-          totalPages={totalPages}
-          locale={params.locale}
-        />
+        {displayGames.length !== 0 ? (
+          <Data
+            data={displayGames}
+            year={params.year}
+            searchTerm={searchTerm}
+            totalPages={totalPages}
+            locale={params.locale}
+          />
+        ) : (
+          <div className="max-w-3xl mx-auto p-6 h-screen flex flex-col justify-center items-center">
+            <h2 className="mb-4">Ups! Something went wrong.</h2>
+            <Button
+              onClick={
+                // Attempt to recover by trying to re-render the segment
+                () => router.push(`/conferences/${params.year}`)
+              }
+            >
+              Try again
+            </Button>
+          </div>
+        )}
       </Suspense>
     </>
   )
