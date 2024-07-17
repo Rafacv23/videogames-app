@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react"
-import { useTranslation } from "react-i18next"
 
 export default function Error({
   error,
