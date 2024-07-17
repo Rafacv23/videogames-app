@@ -42,7 +42,6 @@ const Search = ({
     <Dialog>
       <DialogTrigger className={className}>{t("search")}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
-        bu
         <DialogHeader>
           <DialogTitle>{t("search")}</DialogTitle>
           <DialogDescription>{t("search-dialog")}</DialogDescription>
@@ -54,7 +53,7 @@ const Search = ({
           placeholder={t("search-placeholder")}
         />
         <ul className="flex flex-col gap-4 mt-4">
-          {results.length !== 0 && searchTerm.length >= 3
+          {results.length > 0 && searchTerm.length >= 3
             ? results.map((game: Game) => (
                 <>
                   <li key={game.id}>
@@ -68,7 +67,7 @@ const Search = ({
                   <Separator />
                 </>
               ))
-            : t("search-error")}
+            : searchTerm.length >= 3 && <li>{t("search-error")}</li>}
         </ul>
       </DialogContent>
     </Dialog>
