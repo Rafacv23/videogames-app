@@ -53,19 +53,21 @@ const Search = ({
           placeholder={t("search-placeholder")}
         />
         <ul className="flex flex-col gap-4 mt-4">
-          {results.map((game: Game) => (
-            <>
-              <li key={game.id}>
-                <a
-                  className="hover:text-pistacho hover:transition-colors"
-                  href={`/game/${game.id}`}
-                >
-                  {game.name}
-                </a>
-              </li>
-              <Separator />
-            </>
-          ))}
+          {results.length !== 0 && searchTerm.length >= 3
+            ? results.map((game: Game) => (
+                <>
+                  <li key={game.id}>
+                    <a
+                      className="hover:text-pistacho hover:transition-colors"
+                      href={`/game/${game.id}`}
+                    >
+                      {game.name}
+                    </a>
+                  </li>
+                  <Separator />
+                </>
+              ))
+            : t("search-error")}
         </ul>
       </DialogContent>
     </Dialog>
