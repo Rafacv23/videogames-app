@@ -97,7 +97,7 @@ export default function ConferencePage({
             <Button
               onClick={
                 // Attempt to recover by trying to re-render the segment
-                () => router.push(`/conferences/${params.year}`)
+                () => router.refresh()
               }
             >
               Try again
