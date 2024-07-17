@@ -1,5 +1,5 @@
 // components/NavBar.tsx
-import React from "react"
+import React, { Suspense } from "react"
 import { NavBarProps } from "@/lib/types"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { RotateCcw } from "lucide-react"
@@ -10,6 +10,7 @@ import SearchBar from "./SearchBar"
 import SortMenu from "./SortMenu"
 import FilterMenu from "./FilterMenu"
 import { useTranslation } from "react-i18next"
+import Loading from "@/app/[locale]/loading"
 
 const NavBar: React.FC<NavBarProps> = ({
   conferences,
@@ -34,11 +35,13 @@ const NavBar: React.FC<NavBarProps> = ({
       <Card>
         <CardHeader className="md:flex md:flex-row justify-around md:items-end">
           <ConferencesDropdown conferences={conferences} locale={locale} />
-          <ConferenceLink
-            nextConference={nextConference}
-            year={year}
-            locale={locale}
-          />
+          <Suspense fallback={<Loading />}>
+            <ConferenceLink
+              nextConference={nextConference}
+              year={year}
+              locale={locale}
+            />
+          </Suspense>
         </CardHeader>
         <CardContent className="flex flex-col md:flex-row gap-2">
           <SearchBar
