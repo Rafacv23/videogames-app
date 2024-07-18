@@ -21,9 +21,62 @@ const i18nNamespaces = [
 ]
 
 export const metadata: Metadata = {
+  applicationName: siteConfig.name,
   title: siteConfig.name,
   description: siteConfig.description,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
+  category: "videogames",
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      es: "/es",
+    },
+  },
+  keywords: [
+    "Videogames",
+    "Videogames releases",
+    "Videogame news",
+    "Open source",
+  ],
+  authors: { name: siteConfig.author },
+  creator: siteConfig.author,
+  publisher: siteConfig.author,
+  openGraph: {
+    type: "website",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    siteName: siteConfig.name,
+    description: siteConfig.description,
+    images: [
+      {
+        url: `${siteConfig.url}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} OG Image`,
+      },
+    ],
+    locale: "en",
+  },
+  twitter: {
+    card: "summary_large_image",
+    creator: "@rafa_canosa",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: `${siteConfig.url}/twitter-image.jpg`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: "/public/logo.avif",
+    apple: "/public/logo.avif",
+  },
 }
 
 export const viewport: Viewport = {
