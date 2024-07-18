@@ -8,5 +8,24 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 
 /** @type {import('next').NextConfig} */
 export default {
-  // next config here...
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "shared.akamai.steamstatic.com",
+        pathname: "/store_item_assets/steam/apps/**",
+      },
+      {
+        protocol: "https",
+        hostname: "external-content.duckduckgo.com",
+        pathname: "/iu/**",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.nintendo.com",
+        pathname: "/image/upload/**",
+      },
+    ],
+  },
 }
