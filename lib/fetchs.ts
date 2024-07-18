@@ -247,7 +247,7 @@ export const fetchConferencesYears = async ({
   const endpoint = `${productionURL}/api/conferences/years`
 
   try {
-    const res = await await fetch(endpoint)
+    const res = await fetch(endpoint)
 
     if (!res.ok) {
       throw new Error("Failed to fetch years")
