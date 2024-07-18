@@ -13,6 +13,7 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import initTranslations from "@/app/i18n"
 import { Skeleton } from "./ui/skeleton"
+import Image from "next/image"
 
 export default async function VideogameCard({
   game,
@@ -45,13 +46,11 @@ export default async function VideogameCard({
       </CardHeader>
       <CardContent>
         <Suspense fallback={<Skeleton />}>
-          <img
+          <Image
             src={game.img}
             alt={`${game.name} logo`}
-            className="max-w-full h-auto max-h-32"
             width={324}
             height={151}
-            loading="lazy"
           />
         </Suspense>
       </CardContent>
