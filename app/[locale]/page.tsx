@@ -26,7 +26,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
     `http://localhost:3000/api/conferences`
   )
   const lastConference = await fetchData(`http://localhost:3000/api/watch/last`)
-  const sortedPosts = sortPosts(posts.slice(0, 3))
+  const sortedPosts = sortPosts(
+    posts.slice(0, 3).filter((post) => post.published)
+  )
+
+  console.log(sortedPosts)
   const currentDate = new Date()
   const { t } = await initTranslations(params.locale, ["home", "common"])
 
@@ -122,29 +126,31 @@ export default async function Home({ params }: { params: { locale: string } }) {
               />
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader className="flex flex-col md:flex-row md:flex gap-4 md:gap-0 justify-between md:items-center mb-4">
-              <CardTitle>{t("posts-card")}</CardTitle>
-              <Link href={"/blog"}>
-                <Button>{t("common:see-more")}</Button>
-              </Link>
-            </CardHeader>
-            <CardContent>
-              <ul>
-                {sortedPosts.map((post) => (
-                  <li key={post.slug}>
-                    <PostItem
-                      locale={params.locale}
-                      slug={post.slug}
-                      date={post.date}
-                      title={post.title}
-                      description={post.description}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
+          {sortedPosts.length === 0 ? null : (
+            <Card>
+              <CardHeader className="flex flex-col md:flex-row md:flex gap-4 md:gap-0 justify-between md:items-center mb-4">
+                <CardTitle>{t("posts-card")}</CardTitle>
+                <Link href={"/blog"}>
+                  <Button>{t("common:see-more")}</Button>
+                </Link>
+              </CardHeader>
+              <CardContent>
+                <ul>
+                  {sortedPosts.map((post) => (
+                    <li key={post.slug}>
+                      <PostItem
+                        locale={params.locale}
+                        slug={post.slug}
+                        date={post.date}
+                        title={post.title}
+                        description={post.description}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </div>
