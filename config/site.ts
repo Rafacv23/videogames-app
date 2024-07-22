@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "All in one for gamers",
+  name: "GamesVault",
   url: "https://videogames-app-lyart.vercel.app",
   description:
     "Free and open source videogame all in one application. Created for players to bring the best experience for gamers.",
