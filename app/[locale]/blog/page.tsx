@@ -9,7 +9,7 @@ import { Metadata } from "next"
 const POSTS_PER_PAGE = 5
 
 export const metadata: Metadata = {
-  title: "Blog - Videogames App",
+  title: "Blog | Videogames App",
   description: "My thoughts on the videogames industry",
 }
 
