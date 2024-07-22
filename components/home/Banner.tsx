@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import initTranslations from "@/app/i18n"
 
 export default async function Banner({ locale }: { locale: string }) {
