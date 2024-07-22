@@ -1,5 +1,22 @@
 import React from "react"
 import Nav from "@/components/releases/Nav"
+import { Metadata, ResolvingMetadata } from "next"
+import initTranslations from "@/app/i18n"
+
+type Props = {
+  params: { locale: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { t } = await initTranslations(params.locale, ["releases", "common"])
+  return {
+    title: t("url-title"),
+    description: t("description"),
+  }
+}
 
 export default function ReleasesLayout({
   children,
