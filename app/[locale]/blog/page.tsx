@@ -2,9 +2,11 @@ import { posts } from "#site/content"
 import initTranslations from "@/app/i18n"
 import { PostItem } from "@/components/blog/post-item"
 import { QueryPagination } from "@/components/blog/query-pagination"
+import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { sortPosts } from "@/lib/utils"
 import { Metadata } from "next"
+import Link from "next/link"
 
 const POSTS_PER_PAGE = 5
 
@@ -65,7 +67,12 @@ export default async function BlogPage({
           })}
         </ul>
       ) : (
-        <p>{t("nothing")}</p>
+        <>
+          <p className="mt-8 mb-8">{t("nothing")}</p>
+          <Link href={"/"}>
+            <Button variant="outline">{t("common:back")}</Button>
+          </Link>
+        </>
       )}
       <QueryPagination totalPages={totalPages} className="justify-end mt-4" />
     </div>
