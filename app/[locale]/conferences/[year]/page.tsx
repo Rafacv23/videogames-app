@@ -9,7 +9,6 @@ import {
   fetchConferences,
   fetchConferencesYears,
   fetchGames,
-  fetchPlatforms,
 } from "@/lib/fetchs"
 import { useRouter } from "next/navigation"
 import Loading from "../loading"
@@ -34,14 +33,12 @@ export default function ConferencePage({
   const [nextConference, setNextConference] = useState<Conference | null>(null)
   const [data, setData] = useState<Game[]>([]) // State to hold games data
   const [searchTerm, setSearchTerm] = useState("") // State for search term
-  const [platforms, setPlatforms] = useState<Platform[]>([])
   const [years, setYears] = useState([])
   const router = useRouter()
 
   useEffect(() => {
     fetchConferences({ year: params.year, setConferences, setNextConference })
     fetchGames({ year: params.year, setData })
-    fetchPlatforms({ setPlatforms })
     fetchConferencesYears({ setYears })
   }, [params.year])
 
@@ -76,7 +73,6 @@ export default function ConferencePage({
         position={position}
         setPosition={setPosition}
         year={params.year}
-        platforms={platforms}
         conferenceYears={years}
         resetValues={resetValues}
         locale={params.locale}
