@@ -22,8 +22,6 @@ export async function GET(request: Request, context: any) {
       games: data.rows,
     }
 
-    console.log(response)
-
     return NextResponse.json(response)
   } catch (err) {
     console.error("Database query failed:", err)
