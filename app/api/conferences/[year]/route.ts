@@ -9,11 +9,13 @@ export async function GET(request: Request, context: any) {
 
     // Ajustamos la consulta SQL para filtrar por año y mes en release_date
     const sql = `
-      SELECT * FROM Games
+      SELECT Games.*, Conferences.name AS conference_name, Conferences.release_date AS conference_release_date, Conferences.url AS conference_url, Conferences.id AS conference_id
+      FROM Games
       INNER JOIN Games_Conferences ON Games.id = Games_Conferences.game_id
       INNER JOIN Conferences ON Games_Conferences.conference_id = Conferences.id
       WHERE Conferences.release_date LIKE '${year}%'
-      GROUP BY Games.id, Games.name, Games.release_date, Games.publisher, Games.developer, Games.description, Conferences.name, Conferences.release_date, Conferences.url
+      GROUP BY Games.id, Games.name, Games.release_date, Games.publisher, Games.developer, Games.description, 
+               Conferences.name, Conferences.release_date, Conferences.url
       ORDER BY Conferences.release_date DESC
     `
 
