@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrap": "cd lib && node scraper.js"
   },
   "dependencies": {
     "@libsql/client": "^0.7.0",
