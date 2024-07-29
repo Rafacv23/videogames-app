@@ -46,7 +46,6 @@ export interface NavBarProps {
   position: string
   setPosition: (value: string) => void
   year: string
-  platforms: Platform[]
   conferenceYears: string[]
   resetValues: () => void
   locale: string
@@ -55,7 +54,6 @@ export interface NavBarProps {
 export interface FilterMenuProps {
   year?: string | number | null
   conferences: { id: string; name: string }[]
-  platforms: Platform[]
   conferenceYears: string[]
   locale: string
 }

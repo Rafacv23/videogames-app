@@ -19,7 +19,6 @@ const NavBar: React.FC<NavBarProps> = ({
   position,
   setPosition,
   year,
-  platforms,
   conferenceYears,
   resetValues,
   locale,
@@ -54,7 +53,6 @@ const NavBar: React.FC<NavBarProps> = ({
           <FilterMenu
             locale={locale}
             conferences={conferences}
-            platforms={platforms}
             conferenceYears={conferenceYears}
             year={year}
           />
