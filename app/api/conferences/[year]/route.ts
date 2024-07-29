@@ -11,13 +11,8 @@ export async function GET(request: Request, context: any) {
     const sql = `
       SELECT 
         Games.*, 
-        GROUP_CONCAT(DISTINCT Platforms.name) as platforms,
-        Conferences.name as conference_name,
-        Conferences.release_date as conference_date,
         Conferences.url as conference_url
       FROM Games
-      LEFT JOIN Games_Platforms ON Games.id = Games_Platforms.game_id
-      LEFT JOIN Platforms ON Games_Platforms.platform_id = Platforms.id
       INNER JOIN Games_Conferences ON Games.id = Games_Conferences.game_id
       INNER JOIN Conferences ON Games_Conferences.conference_id = Conferences.id
       WHERE Conferences.release_date LIKE '${year}%'
