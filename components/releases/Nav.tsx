@@ -13,39 +13,24 @@ import {
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { RotateCcw } from "lucide-react"
-import { fetchPlatforms } from "@/lib/fetchs"
-import { Platform } from "@/lib/types"
 import { useTranslation } from "react-i18next"
 
 export default function Nav({ locale }: { locale: string }) {
   const router = useRouter()
   const [month, setMonth] = useState("")
   const [year, setYear] = useState("")
-  const [selectedPlatform, setSelectedPlatform] = useState("")
-  const [platforms, setPlatforms] = useState<Platform[]>([])
 
   const resetValues = () => {
     setMonth("")
     setYear("")
-    setSelectedPlatform("")
     router.push(`/releases`)
   }
 
   useEffect(() => {
-    fetchPlatforms({ setPlatforms })
-  }, [])
-
-  useEffect(() => {
-    if (selectedPlatform && year && month) {
-      router.push(`/releases/${year}/${month}/${selectedPlatform}`)
-    } else if (selectedPlatform && year) {
-      router.push(`/releases/${year}/1/${selectedPlatform}`)
-    } else if (year && month) {
+    if (year && month) {
       router.push(`/releases/${year}/${month}`)
-    } else if (year) {
-      router.push(`/releases/${year}/1`)
     }
-  }, [month, year, selectedPlatform, router])
+  }, [month, year, router])
 
   const { t } = useTranslation(locale)
 
@@ -86,29 +71,6 @@ export default function Nav({ locale }: { locale: string }) {
             <SelectItem value="2024">2024</SelectItem>
             <SelectItem value="2025">2025</SelectItem>
             <SelectItem value="2026">2026</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <Select
-        value={selectedPlatform}
-        onValueChange={(value) => setSelectedPlatform(value)}
-      >
-        <SelectTrigger
-          className="w-[180px]"
-          aria-label={t("releases:platform")}
-        >
-          <SelectValue placeholder={t("releases:platform")} />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>{t("releases:platform")}</SelectLabel>
-            {platforms
-              ? platforms.map((platform) => (
-                  <SelectItem key={platform.id} value={platform.id}>
-                    {platform.name}
-                  </SelectItem>
-                ))
-              : null}
           </SelectGroup>
         </SelectContent>
       </Select>
