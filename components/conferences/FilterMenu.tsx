@@ -21,7 +21,6 @@ import { useTranslation } from "react-i18next"
 const FilterMenu: React.FC<FilterMenuProps> = ({
   conferences,
   year,
-  platforms,
   conferenceYears,
   locale,
 }) => {
