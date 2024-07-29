@@ -8,10 +8,7 @@ export async function GET(request: Request, context: any) {
     const { gameId } = context.params
 
     const sql = `
-            SELECT Games.*, GROUP_CONCAT(Platforms.name) as platforms
-    FROM Games
-    LEFT JOIN Games_Platforms ON Games.id = Games_Platforms.game_id
-    LEFT JOIN Platforms ON Games_Platforms.platform_id = Platforms.id
+            SELECT * FROM Games
     WHERE Games.id = '${gameId}'
     GROUP BY Games.id
     `
@@ -24,6 +21,8 @@ export async function GET(request: Request, context: any) {
     const response = {
       games: data.rows,
     }
+
+    console.log(response)
 
     return NextResponse.json(response)
   } catch (err) {
