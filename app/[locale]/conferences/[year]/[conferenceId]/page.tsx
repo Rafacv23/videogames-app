@@ -25,7 +25,6 @@ export default function Page({
   const [nextConference, setNextConference] = useState<Conference | null>(null)
   const [data, setData] = useState<Game[]>([]) // State to hold games data
   const [searchTerm, setSearchTerm] = useState("") // State for search term
-  const [platforms, setPlatforms] = useState<Platform[]>([])
   const [years, setYears] = useState([])
   const router = useRouter()
 
@@ -36,7 +35,6 @@ export default function Page({
       conferenceId: params.conferenceId,
       setData,
     })
-    fetchPlatforms({ setPlatforms })
     fetchConferencesYears({ setYears })
   }, [params.year, params.conferenceId])
 
@@ -64,7 +62,6 @@ export default function Page({
         position={position}
         setPosition={setPosition}
         year={params.year}
-        platforms={platforms}
         conferenceYears={years}
         resetValues={resetValues}
       />
@@ -78,11 +75,11 @@ export default function Page({
           />
         ) : (
           <div className="max-w-3xl mx-auto p-6 h-screen flex flex-col justify-center items-center">
-            <h2 className="mb-4">Ups! Something went wrong.</h2>
+            <h2 className="mb-4">Nothing to show yet, come back later.</h2>
             <Button
               onClick={
                 // Attempt to recover by trying to re-render the segment
-                () => router.refresh()
+                () => router.push(`/conferences/${params.year}`)
               }
             >
               Try again
