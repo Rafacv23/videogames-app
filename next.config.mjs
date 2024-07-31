@@ -26,6 +26,11 @@ export default {
         hostname: "assets.nintendo.com",
         pathname: "/image/upload/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.releases.com",
+        pathname: "/img/image/**",
+      },
     ],
   },
 }
