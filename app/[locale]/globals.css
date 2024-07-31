@@ -78,4 +78,6 @@
 img {
   border-radius: 0.5rem;
   object-fit: cover;
+  max-height: 249px;
+  max-width: 166;
 }
