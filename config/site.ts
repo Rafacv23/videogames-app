@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "GamesVault",
-  url: "https://videogames-app-lyart.vercel.app",
+  url: "https://gamesvault.vercel.app",
   description:
     "Free and open source videogame all in one application. Created for players to bring the best experience for gamers.",
   author: "Rafa Canosa",

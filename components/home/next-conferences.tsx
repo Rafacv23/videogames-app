@@ -14,10 +14,11 @@ import { generateTimeAndDateLink } from "@/lib/utils"
 import initTranslations from "@/app/i18n"
 import { fetchData } from "@/lib/fetchs"
 import { Conference } from "@/lib/types"
+import { siteConfig } from "@/config/site"
 
 export async function NextConferences({ locale }: { locale: string }) {
   const upcomingConferences = await fetchData(
-    `http://localhost:3000/api/conferences`
+    `${siteConfig.url}/api/conferences`
   )
 
   const currentDate = new Date()

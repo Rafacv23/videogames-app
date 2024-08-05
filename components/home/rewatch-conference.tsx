@@ -4,9 +4,10 @@ import Player from "@/components/watch/Player"
 import Link from "next/link"
 import { fetchData } from "@/lib/fetchs"
 import initTranslations from "@/app/i18n"
+import { siteConfig } from "@/config/site"
 
 export async function RewatchConference({ locale }: { locale: string }) {
-  const lastConference = await fetchData(`http://localhost:3000/api/watch/last`)
+  const lastConference = await fetchData(`${siteConfig.url}/api/watch/last`)
 
   const { t } = await initTranslations(locale, ["home", "common"])
 

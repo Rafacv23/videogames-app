@@ -1,9 +1,9 @@
 import { siteConfig } from "@/config/site"
 import { Conference, Game, Platform } from "./types"
 
-const devURL = "http://localhost:3000"
+//const devURL = "http://localhost:3000"
 
-const productionURL = devURL
+const productionURL = siteConfig.url
 
 // Function to fetch conferences data
 export const fetchConferences = async ({

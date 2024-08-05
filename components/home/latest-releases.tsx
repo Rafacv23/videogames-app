@@ -5,9 +5,10 @@ import Link from "next/link"
 import initTranslations from "@/app/i18n"
 import { Game } from "@/lib/types"
 import { fetchData } from "@/lib/fetchs"
+import { siteConfig } from "@/config/site"
 
 export async function LatestReleases({ locale }: { locale: string }) {
-  const upcomingReleases = await fetchData(`http://localhost:3000/api/releases`)
+  const upcomingReleases = await fetchData(`${siteConfig.url}/api/releases`)
 
   const { t } = await initTranslations(locale, ["home", "common"])
 
