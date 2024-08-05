@@ -17,12 +17,7 @@ export async function GET(request: any) {
 
   try {
     const sql = `
-      SELECT 
-        Games.*, 
-        GROUP_CONCAT(DISTINCT Platforms.name) as platforms
-      FROM Games
-      LEFT JOIN Games_Platforms ON Games.id = Games_Platforms.game_id
-      LEFT JOIN Platforms ON Games_Platforms.platform_id = Platforms.id
+      SELECT * FROM Games
       WHERE Games.name LIKE '%${query}%'
       GROUP BY Games.id
       LIMIT 10
