@@ -7,7 +7,7 @@ export default async function Banner({ locale }: { locale: string }) {
 
   return (
     <section className="h-screen items-center justify-center flex md:h-auto">
-      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+      <div className="mx-auto max-w-screen-xl px-4 md:py-32 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-pistacho text-3xl font-extrabold text-transparent sm:text-5xl">
             {siteConfig.name}
