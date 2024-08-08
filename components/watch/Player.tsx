@@ -20,6 +20,7 @@ import { ExternalLink } from "lucide-react"
 import { Conference } from "@/lib/types"
 import initTranslations from "@/app/i18n"
 import { Button } from "../ui/button"
+import { VideoPlayer } from "../VideoPlayer"
 
 export default async function Player({
   lastConference,
@@ -33,22 +34,21 @@ export default async function Player({
   const currentDate = new Date()
   const { t } = await initTranslations(locale, ["watch", "common"])
 
-  const url = convertYoutubeUrl(lastConference.url ? lastConference.url : "")
+  const videoId = convertYoutubeUrl(
+    lastConference.url ? lastConference.url : ""
+  )
 
   return (
     <div className="w-full lg:max-w-2xl mb-8 lg:mb-0 lg:mr-4">
       <Card className="border-none">
-        <iframe
-          height="315"
-          src={`https://www.youtube.com/embed/${url}`}
-          className="w-full rounded-t-md"
-          title="Conference Video"
-        ></iframe>
+        {videoId ? (
+          <VideoPlayer url={videoId} title={lastConference.name} />
+        ) : null}
         <CardHeader>
           <CardTitle>{lastConference.name}</CardTitle>
           <CardDescription>
             <Link
-              href={`https://www.youtube.com/embed/${url}`}
+              href={`https://www.youtube.com/embed/${videoId}`}
               className="flex items-center mt-2 hover:text-white hover:transition-colors"
             >
               <Button variant="outline">

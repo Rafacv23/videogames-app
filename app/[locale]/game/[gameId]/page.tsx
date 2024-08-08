@@ -25,6 +25,7 @@ import Link from "next/link"
 import { Suspense } from "react"
 import { Skeleton } from "@/components/ui/skeleton"
 import ShareBtn from "@/components/ShareBtn"
+import { VideoPlayer } from "@/components/VideoPlayer"
 
 export default async function GameId({
   params,
@@ -39,7 +40,7 @@ export default async function GameId({
 
     const platforms = game.platforms ? game.platforms.split(",") : []
 
-    const url = convertYoutubeUrl(game.trailer ? game.trailer : "")
+    const videoId = convertYoutubeUrl(game.trailer || "")
 
     return (
       <div className="flex min-h-screen flex-col items-center justify-between p-4 md:p-24">
@@ -64,12 +65,9 @@ export default async function GameId({
             </CardHeader>
             <CardContent>
               <Suspense fallback={<Skeleton />}>
-                <iframe
-                  height="315"
-                  src={`https://www.youtube.com/embed/${url}`}
-                  className="w-full rounded-t-md"
-                  title="Conference Video"
-                ></iframe>
+                {videoId ? (
+                  <VideoPlayer url={videoId} title={game.name} />
+                ) : null}
               </Suspense>
               <p className="mt-8">{game.description}</p>
             </CardContent>

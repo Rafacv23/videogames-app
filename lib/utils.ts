@@ -29,10 +29,10 @@ export function getCurrentMonthAndYear(): { month: string; year: number } {
   return { month, year }
 }
 export function convertYoutubeUrl(url: string) {
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
-  const match = url.match(regExp)
-
-  return match && match[2].length === 11 ? match[2] : null
+  var regExp =
+    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
+  var match = url.match(regExp)
+  return match && match[7].length == 11 ? match[7] : false
 }
 
 export function generateTimeAndDateLink(
